@@ -1,0 +1,2166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SocialForge Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #111;
+        }
+
+        .header p {
+            font-size: 0.875rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+
+        .nav-tabs {
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 0 2rem;
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+        }
+
+        .nav-tab {
+            padding: 0.75rem 1rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 0.875rem;
+            color: #666;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .nav-tab:hover {
+            color: #111;
+        }
+
+        .nav-tab.active {
+            color: #111;
+            border-bottom-color: #111;
+            font-weight: 500;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .view {
+            display: none;
+        }
+
+        .view.active {
+            display: block;
+        }
+
+        /* Platform Grid */
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .platform-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .platform-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .platform-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #111;
+        }
+
+        .prompt-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .prompt-btn {
+            padding: 0.75rem;
+            border: 1px solid #e0e0e0;
+            background: #fafafa;
+            border-radius: 4px;
+            cursor: pointer;
+            text-align: left;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+
+        .prompt-btn:hover {
+            background: #f0f0f0;
+            border-color: #ccc;
+        }
+
+        /* Kanban Board */
+        .kanban-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .kanban-column {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1rem;
+            min-height: 500px;
+        }
+
+        .kanban-column h3 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .kanban-card {
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            cursor: grab;
+        }
+
+        .kanban-card:active {
+            cursor: grabbing;
+        }
+
+        .kanban-card h4 {
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .kanban-card p {
+            font-size: 0.75rem;
+            color: #666;
+        }
+
+        .kanban-card .platform-tag {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            background: #e0e0e0;
+            border-radius: 3px;
+            font-size: 0.625rem;
+            margin-top: 0.5rem;
+        }
+
+        .add-card-btn {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px dashed #ccc;
+            background: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            color: #666;
+            transition: all 0.2s;
+        }
+
+        .add-card-btn:hover {
+            border-color: #999;
+            color: #333;
+        }
+
+        /* File Manager */
+        .file-manager {
+            margin-top: 1.5rem;
+        }
+
+        .upload-area {
+            background: white;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            padding: 3rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 1.5rem;
+        }
+
+        .upload-area:hover {
+            border-color: #999;
+            background: #fafafa;
+        }
+
+        .upload-area.drag-over {
+            border-color: #111;
+            background: #f0f0f0;
+        }
+
+        .file-list {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .file-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .file-item:last-child {
+            border-bottom: none;
+        }
+
+        .file-item-info {
+            flex: 1;
+        }
+
+        .file-item-name {
+            font-size: 0.875rem;
+            color: #111;
+        }
+
+        .file-item-meta {
+            font-size: 0.75rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+
+        .file-item-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid #e0e0e0;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+
+        .btn:hover {
+            background: #f0f0f0;
+        }
+
+        .btn-primary {
+            background: #111;
+            color: white;
+            border-color: #111;
+        }
+
+        .btn-primary:hover {
+            background: #333;
+        }
+
+        .btn-sm {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-header h2 {
+            font-size: 1.25rem;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .close-btn:hover {
+            color: #111;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.875rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Workflow */
+        .workflow-container {
+            margin-top: 1.5rem;
+        }
+
+        .workflow-header {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .workflow-header select {
+            width: 100%;
+            max-width: 300px;
+            padding: 0.75rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 0.875rem;
+        }
+
+        .workflow-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .workflow-step {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            position: relative;
+        }
+
+        .workflow-step.active {
+            border-color: #111;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .workflow-step.completed {
+            border-color: #4caf50;
+            background: #f1f8f4;
+        }
+
+        .workflow-step-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .workflow-step-number {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: #e0e0e0;
+            color: #666;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .workflow-step.active .workflow-step-number {
+            background: #111;
+            color: white;
+        }
+
+        .workflow-step.completed .workflow-step-number {
+            background: #4caf50;
+            color: white;
+        }
+
+        .workflow-step h3 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .workflow-step p {
+            font-size: 0.75rem;
+            color: #666;
+        }
+
+        .workflow-step-content {
+            min-height: 200px;
+        }
+
+        .workflow-step textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 0.75rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        .workflow-output {
+            background: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 1rem;
+            font-size: 0.875rem;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .workflow-content-preview {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 0.75rem;
+            margin-top: 0.5rem;
+            white-space: pre-wrap;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .workflow-controls {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .processing-indicator {
+            display: none;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            background: #f5f5f5;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            margin-top: 1rem;
+        }
+
+        .processing-indicator.active {
+            display: flex;
+        }
+
+        .spinner {
+            width: 16px;
+            height: 16px;
+            border: 2px solid #e0e0e0;
+            border-top-color: #111;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .workflow-result-item {
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .workflow-result-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .workflow-result-label {
+            font-weight: 600;
+            font-size: 0.75rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .workflow-result-value {
+            font-size: 0.875rem;
+            color: #111;
+        }
+
+        @media (max-width: 768px) {
+            .kanban-board {
+                grid-template-columns: 1fr;
+            }
+
+            .platform-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .workflow-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>SocialForge Dashboard</h1>
+        <p>AI Social Media Voice Cloning Platform</p>
+    </div>
+
+    <div class="nav-tabs">
+        <button class="nav-tab active" data-view="workflow">Workflow</button>
+        <button class="nav-tab" data-view="platforms">Platforms</button>
+        <button class="nav-tab" data-view="kanban">Kanban Board</button>
+        <button class="nav-tab" data-view="files">File Manager</button>
+    </div>
+
+    <div class="container">
+        <!-- Workflow View -->
+        <div class="view active" id="workflow">
+            <div class="workflow-container">
+                <div class="workflow-header">
+                    <h2 style="font-size: 1.25rem; margin-bottom: 1rem;">Automated Content Pipeline</h2>
+                    <p style="font-size: 0.875rem; color: #666; margin-bottom: 1rem;">Select a platform and input your content samples. The system will automatically flow through analysis, generation, optimization, and validation.</p>
+                    <div class="form-group">
+                        <label>Select Platform</label>
+                        <select id="workflowPlatform">
+                            <option value="">-- Choose a platform --</option>
+                            <option value="youtube">YouTube</option>
+                            <option value="instagram">Instagram</option>
+                            <option value="linkedin">LinkedIn</option>
+                            <option value="twitter">Twitter/X</option>
+                            <option value="tiktok">TikTok</option>
+                            <option value="newsletter">Newsletter</option>
+                            <option value="podcast">Podcast</option>
+                            <option value="blog">Blog/SEO</option>
+                            <option value="threads">Threads</option>
+                            <option value="facebook">Facebook</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="workflow-steps">
+                    <!-- P1: Analyzer -->
+                    <div class="workflow-step" id="step1">
+                        <div class="workflow-step-header">
+                            <div>
+                                <h3>P1: Analyzer</h3>
+                                <p>Voice analysis</p>
+                            </div>
+                            <div class="workflow-step-number">1</div>
+                        </div>
+                        <div class="workflow-step-content">
+                            <label style="font-size: 0.875rem; margin-bottom: 0.5rem; display: block;">Input Content Samples (20-50 posts)</label>
+                            <textarea id="p1Input" placeholder="Paste your content samples here, one per line or separated by ---"></textarea>
+
+                            <div style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+                                <label style="font-size: 0.875rem; display: block; margin-bottom: 0.25rem;">Or upload a file:</label>
+                                <input type="file" id="p1FileInput" accept=".txt,.csv,.json" style="font-size: 0.875rem;">
+                            </div>
+
+                            <div class="workflow-controls">
+                                <button class="btn btn-primary" id="startWorkflow">Start Analysis</button>
+                            </div>
+                            <div class="processing-indicator" id="p1Processing">
+                                <div class="spinner"></div>
+                                <span>Analyzing voice patterns...</span>
+                            </div>
+                            <div id="p1Output" style="display: none; margin-top: 1rem;"></div>
+                        </div>
+                    </div>
+
+                    <!-- P2: Generator -->
+                    <div class="workflow-step" id="step2">
+                        <div class="workflow-step-header">
+                            <div>
+                                <h3>P2: Generator</h3>
+                                <p>Content generation</p>
+                            </div>
+                            <div class="workflow-step-number">2</div>
+                        </div>
+                        <div class="workflow-step-content">
+                            <div id="p2Input" style="display: none;">
+                                <label style="font-size: 0.875rem; margin-bottom: 0.5rem; display: block;">What content should I create?</label>
+                                <textarea id="p2TopicInput" placeholder="Enter your topic or content brief. Example: 'Write a post about why most marketing advice is wrong' or 'Create content about the future of AI in business'" style="width: 100%; min-height: 80px; padding: 0.75rem; border: 1px solid #e0e0e0; border-radius: 4px; font-size: 0.875rem; margin-bottom: 0.5rem;"></textarea>
+                                <button class="btn btn-primary" id="generateContent">Generate Content</button>
+                            </div>
+                            <div id="p2Output" style="color: #666; font-size: 0.875rem;">Waiting for P1 to complete...</div>
+                            <div class="processing-indicator" id="p2Processing">
+                                <div class="spinner"></div>
+                                <span>Generating content in creator's voice...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- P3: Optimizer -->
+                    <div class="workflow-step" id="step3">
+                        <div class="workflow-step-header">
+                            <div>
+                                <h3>P3: Optimizer</h3>
+                                <p>Algorithm optimization</p>
+                            </div>
+                            <div class="workflow-step-number">3</div>
+                        </div>
+                        <div class="workflow-step-content">
+                            <div id="p3Input" style="display: none;">
+                                <label style="font-size: 0.875rem; margin-bottom: 0.5rem; display: block;">Paste the content you got from the LLM:</label>
+                                <textarea id="p3ContentInput" placeholder="Paste the actual content generated by Claude/GPT-4 here..." style="width: 100%; min-height: 120px; padding: 0.75rem; border: 1px solid #e0e0e0; border-radius: 4px; font-size: 0.875rem; margin-bottom: 0.5rem;"></textarea>
+                                <button class="btn btn-primary" id="optimizeContent">Optimize This Content</button>
+                                <button class="btn" id="skipToOptimize" style="margin-left: 0.5rem;">Skip (Use Simulated)</button>
+                            </div>
+                            <div id="p3Output" style="color: #666; font-size: 0.875rem;">Waiting for P2 to complete...</div>
+                            <div class="processing-indicator" id="p3Processing">
+                                <div class="spinner"></div>
+                                <span>Optimizing content...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- P4: Validator -->
+                    <div class="workflow-step" id="step4">
+                        <div class="workflow-step-header">
+                            <div>
+                                <h3>P4: Validator</h3>
+                                <p>Quality validation</p>
+                            </div>
+                            <div class="workflow-step-number">4</div>
+                        </div>
+                        <div class="workflow-step-content">
+                            <div id="p4Output" style="color: #666; font-size: 0.875rem;">Waiting for P3 to complete...</div>
+                            <div class="processing-indicator" id="p4Processing">
+                                <div class="spinner"></div>
+                                <span>Validating authenticity...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 1.5rem; padding: 1rem; background: white; border: 1px solid #e0e0e0; border-radius: 8px;">
+                    <h3 style="font-size: 1rem; margin-bottom: 0.5rem;">Workflow Actions</h3>
+                    <div style="display: flex; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap;">
+                        <button class="btn" id="resetWorkflow">Reset Workflow</button>
+                        <button class="btn" id="saveWorkflow">Save Results</button>
+                        <button class="btn" id="exportWorkflow">Export to Kanban</button>
+                    </div>
+                    <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;">
+                        <h4 style="font-size: 0.875rem; margin-bottom: 0.5rem;">Export Final Content</h4>
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                            <button class="btn btn-sm" id="exportMarkdown">Export as MD</button>
+                            <button class="btn btn-sm" id="exportPDF">Export as PDF</button>
+                            <button class="btn btn-sm" id="exportDOCX">Export as DOCX</button>
+                            <button class="btn btn-sm" id="exportGoogleDocs">Copy for Google Docs</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Platforms View -->
+        <div class="view" id="platforms">
+            <div class="platform-grid">
+                <div class="platform-card" data-platform="youtube">
+                    <h3>YouTube</h3>
+                    <div class="prompt-list">
+                        <button class="prompt-btn" data-prompt="analyzer">P1: Analyzer</button>
+                        <button class="prompt-btn" data-prompt="generator">P2: Generator</button>
+                        <button class="prompt-btn" data-prompt="optimizer">P3: Optimizer</button>
+                        <button class="prompt-btn" data-prompt="validator">P4: Validator</button>
+                    </div>
+                </div>
+
+                <div class="platform-card" data-platform="instagram">
+                    <h3>Instagram</h3>
+                    <div class="prompt-list">
+                        <button class="prompt-btn" data-prompt="analyzer">P1: Analyzer</button>
+                        <button class="prompt-btn" data-prompt="generator">P2: Generator</button>
+                        <button class="prompt-btn" data-prompt="optimizer">P3: Optimizer</button>
+                        <button class="prompt-btn" data-prompt="validator">P4: Validator</button>
+                    </div>
+                </div>
+
+                <div class="platform-card" data-platform="linkedin">
+                    <h3>LinkedIn</h3>
+                    <div class="prompt-list">
+                        <button class="prompt-btn" data-prompt="analyzer">P1: Analyzer</button>
+                        <button class="prompt-btn" data-prompt="generator">P2: Generator</button>
+                        <button class="prompt-btn" data-prompt="optimizer">P3: Optimizer</button>
+                        <button class="prompt-btn" data-prompt="validator">P4: Validator</button>
+                    </div>
+                </div>
+
+                <div class="platform-card" data-platform="twitter">
+                    <h3>Twitter/X</h3>
+                    <div class="prompt-list">
+                        <button class="prompt-btn" data-prompt="analyzer">P1: Analyzer</button>
+                        <button class="prompt-btn" data-prompt="generator">P2: Generator</button>
+                        <button class="prompt-btn" data-prompt="optimizer">P3: Optimizer</button>
+                        <button class="prompt-btn" data-prompt="validator">P4: Validator</button>
+                    </div>
+                </div>
+
+                <div class="platform-card" data-platform="tiktok">
+                    <h3>TikTok</h3>
+                    <div class="prompt-list">
+                        <button class="prompt-btn" data-prompt="analyzer">P1: Analyzer</button>
+                        <button class="prompt-btn" data-prompt="generator">P2: Generator</button>
+                        <button class="prompt-btn" data-prompt="optimizer">P3: Optimizer</button>
+                        <button class="prompt-btn" data-prompt="validator">P4: Validator</button>
+                    </div>
+                </div>
+
+                <div class="platform-card" data-platform="newsletter">
+                    <h3>Newsletter</h3>
+                    <div class="prompt-list">
+                        <button class="prompt-btn" data-prompt="analyzer">P1: Analyzer</button>
+                        <button class="prompt-btn" data-prompt="generator">P2: Generator</button>
+                        <button class="prompt-btn" data-prompt="optimizer">P3: Optimizer</button>
+                        <button class="prompt-btn" data-prompt="validator">P4: Validator</button>
+                    </div>
+                </div>
+
+                <div class="platform-card" data-platform="podcast">
+                    <h3>Podcast</h3>
+                    <div class="prompt-list">
+                        <button class="prompt-btn" data-prompt="analyzer">P1: Analyzer</button>
+                        <button class="prompt-btn" data-prompt="generator">P2: Generator</button>
+                        <button class="prompt-btn" data-prompt="optimizer">P3: Optimizer</button>
+                        <button class="prompt-btn" data-prompt="validator">P4: Validator</button>
+                    </div>
+                </div>
+
+                <div class="platform-card" data-platform="blog">
+                    <h3>Blog/SEO</h3>
+                    <div class="prompt-list">
+                        <button class="prompt-btn" data-prompt="analyzer">P1: Analyzer</button>
+                        <button class="prompt-btn" data-prompt="generator">P2: Generator</button>
+                        <button class="prompt-btn" data-prompt="optimizer">P3: Optimizer</button>
+                        <button class="prompt-btn" data-prompt="validator">P4: Validator</button>
+                    </div>
+                </div>
+
+                <div class="platform-card" data-platform="threads">
+                    <h3>Threads</h3>
+                    <div class="prompt-list">
+                        <button class="prompt-btn" data-prompt="analyzer">P1: Analyzer</button>
+                        <button class="prompt-btn" data-prompt="generator">P2: Generator</button>
+                        <button class="prompt-btn" data-prompt="optimizer">P3: Optimizer</button>
+                        <button class="prompt-btn" data-prompt="validator">P4: Validator</button>
+                    </div>
+                </div>
+
+                <div class="platform-card" data-platform="facebook">
+                    <h3>Facebook</h3>
+                    <div class="prompt-list">
+                        <button class="prompt-btn" data-prompt="analyzer">P1: Analyzer</button>
+                        <button class="prompt-btn" data-prompt="generator">P2: Generator</button>
+                        <button class="prompt-btn" data-prompt="optimizer">P3: Optimizer</button>
+                        <button class="prompt-btn" data-prompt="validator">P4: Validator</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kanban Board View -->
+        <div class="view" id="kanban">
+            <div class="kanban-board">
+                <div class="kanban-column" data-status="draft">
+                    <h3>Draft</h3>
+                    <div class="kanban-cards" id="draft-cards"></div>
+                    <button class="add-card-btn" data-status="draft">+ Add Card</button>
+                </div>
+
+                <div class="kanban-column" data-status="generated">
+                    <h3>Generated</h3>
+                    <div class="kanban-cards" id="generated-cards"></div>
+                    <button class="add-card-btn" data-status="generated">+ Add Card</button>
+                </div>
+
+                <div class="kanban-column" data-status="optimized">
+                    <h3>Optimized</h3>
+                    <div class="kanban-cards" id="optimized-cards"></div>
+                    <button class="add-card-btn" data-status="optimized">+ Add Card</button>
+                </div>
+
+                <div class="kanban-column" data-status="published">
+                    <h3>Published</h3>
+                    <div class="kanban-cards" id="published-cards"></div>
+                    <button class="add-card-btn" data-status="published">+ Add Card</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- File Manager View -->
+        <div class="view" id="files">
+            <div class="file-manager">
+                <div class="upload-area" id="uploadArea">
+                    <input type="file" id="fileInput" multiple style="display: none;">
+                    <p style="font-size: 1rem; margin-bottom: 0.5rem;">Drop files here or click to upload</p>
+                    <p style="font-size: 0.875rem; color: #666;">Upload content samples, voice profiles, or generated content</p>
+                </div>
+
+                <div class="file-list" id="fileList">
+                    <p style="color: #666; font-size: 0.875rem;">No files uploaded yet</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Prompt Modal -->
+    <div class="modal" id="promptModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="promptModalTitle">Prompt</h2>
+                <button class="close-btn" id="closePromptModal">&times;</button>
+            </div>
+            <div id="promptModalContent">
+                <p>Loading prompt...</p>
+            </div>
+            <div style="margin-top: 1.5rem; display: flex; gap: 0.5rem;">
+                <button class="btn btn-primary" id="copyPromptBtn">Copy Prompt</button>
+                <button class="btn" id="openPromptFileBtn">Open File</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kanban Card Modal -->
+    <div class="modal" id="cardModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="cardModalTitle">Add New Card</h2>
+                <button class="close-btn" id="closeCardModal">&times;</button>
+            </div>
+            <form id="cardForm">
+                <div class="form-group">
+                    <label>Title</label>
+                    <input type="text" id="cardTitle" required>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="cardDescription"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Platform</label>
+                    <select id="cardPlatform">
+                        <option value="youtube">YouTube</option>
+                        <option value="instagram">Instagram</option>
+                        <option value="linkedin">LinkedIn</option>
+                        <option value="twitter">Twitter/X</option>
+                        <option value="tiktok">TikTok</option>
+                        <option value="newsletter">Newsletter</option>
+                        <option value="podcast">Podcast</option>
+                        <option value="blog">Blog/SEO</option>
+                        <option value="threads">Threads</option>
+                        <option value="facebook">Facebook</option>
+                    </select>
+                </div>
+                <input type="hidden" id="cardStatus">
+                <input type="hidden" id="cardId">
+                <div style="display: flex; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap;">
+                    <button type="submit" class="btn btn-primary">Save Card</button>
+                    <button type="button" class="btn" id="copyCardContent">Copy Full Content</button>
+                </div>
+                <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;">
+                    <h4 style="font-size: 0.875rem; margin-bottom: 0.5rem;">Export This Content</h4>
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        <button type="button" class="btn btn-sm" id="exportCardMarkdown">Export as MD</button>
+                        <button type="button" class="btn btn-sm" id="exportCardPDF">Export as PDF</button>
+                        <button type="button" class="btn btn-sm" id="exportCardDOCX">Export as DOCX</button>
+                        <button type="button" class="btn btn-sm" id="exportCardGoogleDocs">Copy for Google Docs</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Navigation
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.view).classList.add('active');
+            });
+        });
+
+        // Prompt Modal
+        const promptModal = document.getElementById('promptModal');
+        const promptModalTitle = document.getElementById('promptModalTitle');
+        const promptModalContent = document.getElementById('promptModalContent');
+        const closePromptModal = document.getElementById('closePromptModal');
+        let currentPromptPath = '';
+
+        document.querySelectorAll('.prompt-btn').forEach(btn => {
+            btn.addEventListener('click', async (e) => {
+                const platform = e.target.closest('.platform-card').dataset.platform;
+                const promptType = e.target.dataset.prompt;
+                const promptNumber = {
+                    'analyzer': 'P1',
+                    'generator': 'P2',
+                    'optimizer': 'P3',
+                    'validator': 'P4'
+                }[promptType];
+
+                const fileName = `${promptNumber}_${platform}_${promptType}.md`;
+                currentPromptPath = `${platform}/${fileName}`;
+
+                promptModalTitle.textContent = `${platform.charAt(0).toUpperCase() + platform.slice(1)} - ${promptNumber}: ${promptType.charAt(0).toUpperCase() + promptType.slice(1)}`;
+                promptModalContent.innerHTML = '<p>Loading prompt content...</p>';
+                promptModal.classList.add('active');
+
+                // In a real implementation, this would fetch the actual file content
+                // For now, we'll show a placeholder
+                setTimeout(() => {
+                    promptModalContent.innerHTML = `
+                        <div style="background: #f5f5f5; padding: 1rem; border-radius: 4px; font-family: monospace; font-size: 0.875rem; max-height: 400px; overflow-y: auto;">
+                            <p><strong>File:</strong> ${currentPromptPath}</p>
+                            <p style="margin-top: 1rem; color: #666;">This would display the full prompt content from the .md file.</p>
+                            <p style="margin-top: 0.5rem; color: #666;">Click "Open File" to view the actual prompt in your file system.</p>
+                        </div>
+                    `;
+                }, 300);
+            });
+        });
+
+        closePromptModal.addEventListener('click', () => {
+            promptModal.classList.remove('active');
+        });
+
+        document.getElementById('copyPromptBtn').addEventListener('click', () => {
+            alert('Prompt copied to clipboard! (In production, this would copy the actual prompt text)');
+        });
+
+        document.getElementById('openPromptFileBtn').addEventListener('click', () => {
+            alert(`Open file: ${currentPromptPath}\n\n(In production, this would open the file in your default editor)`);
+        });
+
+        // Kanban Board
+        const cardModal = document.getElementById('cardModal');
+        const closeCardModal = document.getElementById('closeCardModal');
+        const cardForm = document.getElementById('cardForm');
+        let cards = JSON.parse(localStorage.getItem('kanbanCards') || '[]');
+
+        function renderKanban() {
+            ['draft', 'generated', 'optimized', 'published'].forEach(status => {
+                const container = document.getElementById(`${status}-cards`);
+                container.innerHTML = '';
+
+                cards.filter(c => c.status === status).forEach(card => {
+                    const cardEl = document.createElement('div');
+                    cardEl.className = 'kanban-card';
+                    cardEl.draggable = true;
+                    cardEl.dataset.id = card.id;
+
+                    // Build metadata display
+                    let metaInfo = '';
+                    if (card.workflowData) {
+                        metaInfo = `<div style="font-size: 0.625rem; color: #999; margin-top: 0.5rem;">`;
+                        if (card.workflowData.compositeScore) {
+                            metaInfo += `Score: ${card.workflowData.compositeScore}/10 | `;
+                        }
+                        if (card.fullContent) {
+                            metaInfo += `Full content stored`;
+                        }
+                        metaInfo += `</div>`;
+                    }
+
+                    cardEl.innerHTML = `
+                        <h4>${card.title}</h4>
+                        <p style="margin-bottom: 0.5rem;">${card.description || 'No description'}</p>
+                        <span class="platform-tag">${card.platform}</span>
+                        ${metaInfo}
+                        ${card.fullContent ? '<div style="font-size: 0.625rem; color: #666; margin-top: 0.25rem; font-style: italic;">Click to view full content</div>' : ''}
+                    `;
+
+                    cardEl.addEventListener('dragstart', (e) => {
+                        e.dataTransfer.setData('cardId', card.id);
+                    });
+
+                    cardEl.addEventListener('click', () => {
+                        openCardModal(card);
+                    });
+
+                    container.appendChild(cardEl);
+                });
+            });
+        }
+
+        document.querySelectorAll('.kanban-column').forEach(column => {
+            column.addEventListener('dragover', (e) => {
+                e.preventDefault();
+            });
+
+            column.addEventListener('drop', (e) => {
+                e.preventDefault();
+                const cardId = e.dataTransfer.getData('cardId');
+                const newStatus = column.dataset.status;
+
+                cards = cards.map(c =>
+                    c.id === cardId ? {...c, status: newStatus} : c
+                );
+
+                localStorage.setItem('kanbanCards', JSON.stringify(cards));
+                renderKanban();
+            });
+        });
+
+        document.querySelectorAll('.add-card-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const status = e.target.dataset.status;
+                openCardModal(null, status);
+            });
+        });
+
+        function openCardModal(card = null, status = 'draft') {
+            document.getElementById('cardModalTitle').textContent = card ? 'View/Edit Card' : 'Add New Card';
+            document.getElementById('cardTitle').value = card?.title || '';
+
+            // Show full content if available, otherwise use description
+            const contentToShow = card?.fullContent || card?.description || '';
+            document.getElementById('cardDescription').value = contentToShow;
+
+            document.getElementById('cardPlatform').value = card?.platform || 'youtube';
+            document.getElementById('cardStatus').value = card?.status || status;
+            document.getElementById('cardId').value = card?.id || '';
+            cardModal.classList.add('active');
+        }
+
+        closeCardModal.addEventListener('click', () => {
+            cardModal.classList.remove('active');
+        });
+
+        document.getElementById('copyCardContent').addEventListener('click', () => {
+            const content = document.getElementById('cardDescription').value;
+            copyToClipboard(content);
+        });
+
+        cardForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const description = document.getElementById('cardDescription').value;
+            const cardData = {
+                id: document.getElementById('cardId').value || Date.now().toString(),
+                title: document.getElementById('cardTitle').value,
+                description: description.substring(0, 100) + (description.length > 100 ? '...' : ''),
+                fullContent: description, // Store full content
+                platform: document.getElementById('cardPlatform').value,
+                status: document.getElementById('cardStatus').value
+            };
+
+            if (document.getElementById('cardId').value) {
+                // Preserve existing workflowData if it exists
+                const existingCard = cards.find(c => c.id === cardData.id);
+                if (existingCard && existingCard.workflowData) {
+                    cardData.workflowData = existingCard.workflowData;
+                }
+                cards = cards.map(c => c.id === cardData.id ? cardData : c);
+            } else {
+                cards.push(cardData);
+            }
+
+            localStorage.setItem('kanbanCards', JSON.stringify(cards));
+            renderKanban();
+            cardModal.classList.remove('active');
+            cardForm.reset();
+        });
+
+        // File Manager
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const fileList = document.getElementById('fileList');
+        let files = JSON.parse(localStorage.getItem('uploadedFiles') || '[]');
+
+        uploadArea.addEventListener('click', () => fileInput.click());
+
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('drag-over');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('drag-over');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('drag-over');
+            handleFiles(e.dataTransfer.files);
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            handleFiles(e.target.files);
+        });
+
+        function handleFiles(filesList) {
+            Array.from(filesList).forEach(file => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const fileData = {
+                        id: Date.now().toString() + Math.random(),
+                        name: file.name,
+                        size: file.size,
+                        type: file.type,
+                        uploadDate: new Date().toISOString(),
+                        content: e.target.result
+                    };
+
+                    files.push(fileData);
+                    localStorage.setItem('uploadedFiles', JSON.stringify(files));
+                    renderFileList();
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function renderFileList() {
+            if (files.length === 0) {
+                fileList.innerHTML = '<p style="color: #666; font-size: 0.875rem;">No files uploaded yet</p>';
+                return;
+            }
+
+            fileList.innerHTML = files.map(file => `
+                <div class="file-item">
+                    <div class="file-item-info">
+                        <div class="file-item-name">${file.name}</div>
+                        <div class="file-item-meta">${formatFileSize(file.size)} • ${new Date(file.uploadDate).toLocaleDateString()}</div>
+                    </div>
+                    <div class="file-item-actions">
+                        <button class="btn btn-sm" onclick="downloadFile('${file.id}')">Download</button>
+                        <button class="btn btn-sm" onclick="deleteFile('${file.id}')">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+        }
+
+        window.downloadFile = function(id) {
+            const file = files.find(f => f.id === id);
+            if (file) {
+                const link = document.createElement('a');
+                link.href = file.content;
+                link.download = file.name;
+                link.click();
+            }
+        };
+
+        window.deleteFile = function(id) {
+            if (confirm('Are you sure you want to delete this file?')) {
+                files = files.filter(f => f.id !== id);
+                localStorage.setItem('uploadedFiles', JSON.stringify(files));
+                renderFileList();
+            }
+        };
+
+        // Close modals on outside click
+        [promptModal, cardModal].forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+        });
+
+        // Workflow System
+        let workflowData = {
+            platform: '',
+            p1: { input: '', output: null },
+            p2: { output: null },
+            p3: { output: null },
+            p4: { output: null }
+        };
+
+        const workflowPlatform = document.getElementById('workflowPlatform');
+        const startWorkflow = document.getElementById('startWorkflow');
+        const resetWorkflow = document.getElementById('resetWorkflow');
+        const saveWorkflow = document.getElementById('saveWorkflow');
+        const exportWorkflow = document.getElementById('exportWorkflow');
+        const p1FileInput = document.getElementById('p1FileInput');
+
+        // Handle file upload for P1
+        p1FileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    document.getElementById('p1Input').value = event.target.result;
+                };
+                reader.readAsText(file);
+            }
+        });
+
+        workflowPlatform.addEventListener('change', (e) => {
+            workflowData.platform = e.target.value;
+            if (workflowData.platform) {
+                document.getElementById('startWorkflow').disabled = false;
+            }
+        });
+
+        startWorkflow.addEventListener('click', async () => {
+            const p1Input = document.getElementById('p1Input').value;
+            if (!p1Input.trim()) {
+                alert('Please enter content samples first.');
+                return;
+            }
+            if (!workflowData.platform) {
+                alert('Please select a platform first.');
+                return;
+            }
+
+            workflowData.p1.input = p1Input;
+
+            // Reset all steps
+            for (let i = 1; i <= 4; i++) {
+                document.getElementById(`step${i}`).classList.remove('active', 'completed');
+            }
+
+            // Only run P1, then wait for user to input topic
+            await runStep1();
+        });
+
+        // Add event listener for generate content button
+        document.addEventListener('DOMContentLoaded', () => {
+            const generateBtn = document.getElementById('generateContent');
+            if (generateBtn) {
+                generateBtn.addEventListener('click', async () => {
+                    const topic = document.getElementById('p2TopicInput').value;
+                    if (!topic.trim()) {
+                        alert('Please enter a topic or content brief first.');
+                        return;
+                    }
+                    workflowData.topic = topic;
+
+                    // Hide input, run P2 only
+                    document.getElementById('p2Input').style.display = 'none';
+                    await runStep2();
+                });
+            }
+
+            // Add event listener for optimize content button
+            const optimizeBtn = document.getElementById('optimizeContent');
+            if (optimizeBtn) {
+                optimizeBtn.addEventListener('click', async () => {
+                    const userContent = document.getElementById('p3ContentInput').value;
+                    if (!userContent.trim()) {
+                        alert('Please paste the LLM-generated content first.');
+                        return;
+                    }
+
+                    // Use the user's actual content
+                    workflowData.p2.output = {
+                        content: userContent,
+                        voiceMatch: 'User-provided',
+                        voiceProfile: workflowData.p2.output.voiceProfile
+                    };
+
+                    // Hide input, run P3-P4
+                    document.getElementById('p3Input').style.display = 'none';
+                    await runStep3();
+                    await delay(1500);
+                    await runStep4();
+                });
+            }
+
+            // Add event listener for skip button
+            const skipBtn = document.getElementById('skipToOptimize');
+            if (skipBtn) {
+                skipBtn.addEventListener('click', async () => {
+                    // Use simulated content
+                    document.getElementById('p3Input').style.display = 'none';
+                    await runStep3();
+                    await delay(1500);
+                    await runStep4();
+                });
+            }
+        });
+
+
+        async function runStep1() {
+            const step = document.getElementById('step1');
+            const processing = document.getElementById('p1Processing');
+            const output = document.getElementById('p1Output');
+
+            step.classList.add('active');
+            processing.classList.add('active');
+
+            await delay(2000); // Simulate processing
+
+            // Generate mock output - count actual posts (separated by double newlines or ---)
+            const postsCount = workflowData.p1.input
+                .split(/\n\n+|---+/)
+                .filter(post => post.trim().length > 20)
+                .length;
+            workflowData.p1.output = {
+                voiceProfile: 'Voice DNA Profile Generated',
+                dimensions: 12,
+                postsAnalyzed: postsCount,
+                confidence: (85 + Math.random() * 10).toFixed(1)
+            };
+
+            // Display P1 results
+            output.style.display = 'block';
+            output.innerHTML = `
+                <div class="workflow-output">
+                    <div class="workflow-result-item">
+                        <div class="workflow-result-label">Posts Analyzed</div>
+                        <div class="workflow-result-value">${postsCount} posts</div>
+                    </div>
+                    <div class="workflow-result-item">
+                        <div class="workflow-result-label">Voice Dimensions Captured</div>
+                        <div class="workflow-result-value">${workflowData.p1.output.dimensions} dimensions</div>
+                    </div>
+                    <div class="workflow-result-item">
+                        <div class="workflow-result-label">Analysis Confidence</div>
+                        <div class="workflow-result-value">${workflowData.p1.output.confidence}%</div>
+                    </div>
+                    <div class="workflow-result-item">
+                        <div class="workflow-result-label">Status</div>
+                        <div class="workflow-result-value" style="color: #4caf50; font-weight: 600;">Voice Profile Created</div>
+                    </div>
+                </div>
+            `;
+
+            processing.classList.remove('active');
+            step.classList.remove('active');
+            step.classList.add('completed');
+
+            // Show P2 input field
+            document.getElementById('p2Input').style.display = 'block';
+            document.getElementById('p2Output').innerHTML = '<p style="color: #666; font-size: 0.875rem; margin-bottom: 1rem;">✓ Voice profile created! Now enter a topic to generate content in this voice.</p>';
+        }
+
+        async function runStep2() {
+            const step = document.getElementById('step2');
+            const processing = document.getElementById('p2Processing');
+            const output = document.getElementById('p2Output');
+
+            step.classList.add('active');
+            processing.classList.add('active');
+
+            await delay(2500);
+
+            const generatedContent = generateMockContent(workflowData.platform);
+            workflowData.p2.output = generatedContent;
+
+            // Create the actual prompt for LLM following SAP
+            const actualPrompt = `You are analyzing and replicating a creator's voice for ${workflowData.platform}.
+
+SAMPLE POSTS FROM CREATOR:
+${workflowData.p1.input}
+
+VOICE PROFILE DETECTED:
+- Average post length: ${generatedContent.voiceProfile.avgLength} characters
+- Uses emojis: ${generatedContent.voiceProfile.hasEmojis ? 'Yes' : 'No'}
+- Emoji vocabulary: ${generatedContent.voiceProfile.emojiList}
+- Uses numbered lists: ${generatedContent.voiceProfile.hasNumberedLists ? 'Yes' : 'No'}
+- Uses bullet points: ${generatedContent.voiceProfile.hasBullets ? 'Yes' : 'No'}
+- Asks questions: ${generatedContent.voiceProfile.hasQuestions ? 'Yes' : 'No'}
+- Short punchy sentences: ${generatedContent.voiceProfile.shortSentences ? 'Yes' : 'No'}
+- Conversational tone: ${generatedContent.voiceProfile.conversational ? 'Yes' : 'No'}
+- Uses em dashes (—): ${generatedContent.voiceProfile.hasEmDashes ? 'Yes' : 'No'}
+- Uses parentheses: ${generatedContent.voiceProfile.hasParentheses ? 'Yes' : 'No'}
+- Uses colons: ${generatedContent.voiceProfile.hasColons ? 'Yes' : 'No'}
+- Uses semicolons: ${generatedContent.voiceProfile.hasSemicolons ? 'Yes' : 'No'}
+- Uses ellipsis (...): ${generatedContent.voiceProfile.hasEllipsis ? 'Yes' : 'No'}
+
+TASK:
+Write a ${workflowData.platform} post about: "${workflowData.topic}"
+
+CRITICAL: SOCIAL AUTHENTICITY PROTOCOL (SAP) - ZERO TOLERANCE RULES
+
+⛔ ABSOLUTELY FORBIDDEN - EM DASHES (—) AND EN DASHES (–) ⛔
+Never use em dashes or en dashes under any circumstances. Use hyphens (-), periods (.), or commas instead.
+
+BANNED WORDS (Never use these 55 words):
+delve, tapestry, nuanced, landscape (metaphorical), leverage (verb), robust (non-technical), multifaceted, seamless, pivotal, embark, navigate (metaphorical), empower, foster (non-parenting), illuminate, underscore, intricacies, paradigm, realm, catalyst, synergy, endeavor, harness, resonate, culminate, juxtapose, comprehensive, facilitate, encompasses, testament, unpack, cutting-edge, meticulous, strategically, groundbreaking, thought-provoking, holistic, moreover, furthermore, advent, beacon, commendable, underpinning, interplay, utilize, intricate, transformative, elevate (non-literal), curate (non-museum), amplify (non-audio), ecosystem (non-biology), leverage (noun), optimize (casual), streamline, actionable, impactful
+
+BANNED PHRASES (Never use these 40 phrases):
+"In today's world", "It's worth noting that", "Let's dive in", "At the end of the day", "It goes without saying", "In the realm of", "Serves as a testament to", "A myriad of", "Plays a crucial role", "The importance of X cannot be overstated", "In an era where", "It's important to remember", "Moving forward", "At its core", "The landscape of", "This begs the question", "In no uncertain terms", "Stands as a beacon", "Food for thought", "A double-edged sword", "needless to say", "when it comes to", "in terms of", "a testament to", "serves as a reminder", "in essence", "the very fabric of", "a rich tapestry", "stands as a testament", "Let me break this down", "Here's the thing about", "In this post, I'll share", "Absolutely!" (as opener), "Great question!" (as opener), "I'm excited to announce", "Unpopular opinion:" (when popular), "Hot take:" (when lukewarm), "Thread 🧵" (unless creator uses), "If you found this valuable, like and share", "Drop a [emoji] if you agree"
+
+EMOJI RULES:
+- ONLY use these emojis from the samples: ${generatedContent.voiceProfile.emojiList}
+- Match the frequency and placement from samples
+- If creator uses zero emojis, use ZERO emojis
+- Never introduce new emojis not in samples
+
+PUNCTUATION RULES (CRITICAL - MATCH EXACTLY):
+- Em dashes (—): ABSOLUTELY FORBIDDEN - NEVER USE EM DASHES UNDER ANY CIRCUMSTANCES
+- Parentheses (): ${generatedContent.voiceProfile.hasParentheses ? 'Creator uses these - you may use them' : 'Creator NEVER uses parentheses - DO NOT USE THEM'}
+- Colons (:): ${generatedContent.voiceProfile.hasColons ? 'Creator uses these - you may use them' : 'Creator NEVER uses colons - DO NOT USE THEM'}
+- Semicolons (;): ${generatedContent.voiceProfile.hasSemicolons ? 'Creator uses these - you may use them' : 'Creator NEVER uses semicolons - DO NOT USE THEM'}
+- Ellipsis (...): ${generatedContent.voiceProfile.hasEllipsis ? 'Creator uses these - you may use them' : 'Creator NEVER uses ellipsis - DO NOT USE THEM'}
+
+BANNED PUNCTUATION (ZERO TOLERANCE):
+- Em dashes (—) - Use hyphens (-) or periods instead
+- En dashes (–) - Use hyphens (-) instead
+
+NEGATIVE SPACE RULE (MOST IMPORTANT):
+If the creator doesn't use it in the samples above, YOU CANNOT USE IT in your output.
+This includes: punctuation, emojis, formatting, phrases, transition words, ALL CAPS, hashtags, etc.
+
+STRUCTURAL AUTHENTICITY:
+- Match the post length to the creator's average (±50 characters)
+- Copy the EXACT line break pattern from samples
+- Match the opening hook style from samples
+- If creator doesn't use CTAs, don't add one
+- Match hashtag style and count from samples (or use none)
+- Copy the paragraph structure from samples
+
+REQUIREMENTS:
+1. Match the voice, tone, and style patterns from the sample posts EXACTLY
+2. Use the creator's actual vocabulary from the samples - NOT generic AI language
+3. Match the formatting style (line breaks, emojis, lists, etc.) EXACTLY
+4. Keep the same level of formality/informality
+5. Use similar opening hooks from the samples
+6. Respect what the creator NEVER does (negative space) - this is critical
+7. Match the EXACT punctuation patterns from samples (see rules above)
+8. The output must be indistinguishable from the creator's real content
+
+BEFORE YOU GENERATE:
+- Review the sample posts again
+- Note what punctuation they use and DON'T use
+- Note their vocabulary style (simple vs. complex words)
+- Note their sentence structure and length
+- Note their formatting patterns
+
+FINAL CHECK BEFORE SUBMITTING:
+- Did I use ANY em dashes (—) or en dashes (–)? (REMOVE IMMEDIATELY - ZERO TOLERANCE)
+- Did I use any banned words from the list above? (Replace them)
+- Did I use any banned phrases from the list above? (Rewrite)
+- Did I use any emojis not in the creator's list? (Remove them)
+- Did I use any punctuation the creator doesn't use? (Remove it)
+- Does this sound EXACTLY like the samples above? (If not, rewrite)
+
+CRITICAL: Search your output for the character "—" or "–" - if found, replace with "-" or "." or rewrite the sentence.
+
+Generate the content now:`;
+
+            workflowData.actualPrompt = actualPrompt;
+
+            output.innerHTML = `
+                <div class="workflow-output">
+                    <div class="workflow-result-item">
+                        <div class="workflow-result-label">Voice Match Score (Simulated)</div>
+                        <div class="workflow-result-value" style="font-size: 1.25rem; font-weight: 600; color: #4caf50;">${generatedContent.voiceMatch}/10</div>
+                    </div>
+                    <div class="workflow-result-item">
+                        <div class="workflow-result-label">Simulated Generated Content</div>
+                        <div class="workflow-content-preview">${generatedContent.content}</div>
+                    </div>
+                    <div class="workflow-result-item">
+                        <div class="workflow-result-label">💡 For Real Content Generation</div>
+                        <div class="workflow-result-value" style="color: #666;">
+                            Copy the prompt below and paste it into Claude, GPT-4, or another LLM to generate actual content in this creator's voice.
+                        </div>
+                    </div>
+                    <div style="margin-top: 0.5rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        <button class="btn btn-primary btn-sm" onclick="showPromptModal()">View Full Prompt</button>
+                        <button class="btn btn-sm" onclick="copyPromptToClipboard()">Copy Prompt for LLM</button>
+                        <button class="btn btn-sm" onclick="copyToClipboard(\`${generatedContent.content.replace(/`/g, '\\`')}\`)">Copy Simulated Content</button>
+                    </div>
+                </div>
+            `;
+
+            processing.classList.remove('active');
+            step.classList.remove('active');
+            step.classList.add('completed');
+
+            // Show P3 input field for user to paste LLM content
+            document.getElementById('p3Input').style.display = 'block';
+            document.getElementById('p3Output').innerHTML = '<p style="color: #666; font-size: 0.875rem; margin-bottom: 1rem;">✓ Prompt ready! Copy it to your LLM, then paste the generated content below to optimize it.</p>';
+        }
+
+        async function runStep3() {
+            const step = document.getElementById('step3');
+            const processing = document.getElementById('p3Processing');
+            const output = document.getElementById('p3Output');
+
+            step.classList.add('active');
+            processing.classList.add('active');
+
+            await delay(2000);
+
+            const optimized = {
+                hashtags: ['#marketing', '#socialmedia', '#contentcreation', '#digitalmarketing'],
+                engagementScore: (7.5 + Math.random() * 2).toFixed(1),
+                bestPostTime: '2:00 PM - 4:00 PM',
+                recommendations: [
+                    'Add call-to-action in first 3 lines',
+                    'Increase emoji usage by 20%',
+                    'Consider adding question at end'
+                ]
+            };
+
+            workflowData.p3.output = optimized;
+
+            const finalContent = `${workflowData.p2.output.content}\n\n${optimized.hashtags.join(' ')}`;
+
+            output.innerHTML = `
+                <div class="workflow-output">
+                    <div class="workflow-result-item">
+                        <div class="workflow-result-label">Engagement Score</div>
+                        <div class="workflow-result-value" style="font-size: 1.25rem; font-weight: 600; color: #4caf50;">${optimized.engagementScore}/10</div>
+                    </div>
+                    <div class="workflow-result-item">
+                        <div class="workflow-result-label">Optimized Content with Hashtags</div>
+                        <div class="workflow-content-preview">${finalContent}</div>
+                    </div>
+                    <div class="workflow-result-item">
+                        <div class="workflow-result-label">Best Post Time</div>
+                        <div class="workflow-result-value">${optimized.bestPostTime}</div>
+                    </div>
+                    <div class="workflow-result-item">
+                        <div class="workflow-result-label">Optimization Recommendations</div>
+                        <div class="workflow-result-value">
+                            <ul style="margin: 0; padding-left: 1.25rem;">
+                                ${optimized.recommendations.map(r => `<li style="margin-bottom: 0.25rem;">${r}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin-top: 0.5rem;">
+                        <button class="btn btn-sm" onclick="copyToClipboard(\`${finalContent.replace(/`/g, '\\`')}\`)">Copy Optimized Content</button>
+                    </div>
+                </div>
+            `;
+
+            processing.classList.remove('active');
+            step.classList.remove('active');
+            step.classList.add('completed');
+        }
+
+        async function runStep4() {
+            const step = document.getElementById('step4');
+            const processing = document.getElementById('p4Processing');
+            const output = document.getElementById('p4Output');
+
+            step.classList.add('active');
+            processing.classList.add('active');
+
+            await delay(2000);
+
+            const validation = {
+                bylineTest: (8 + Math.random() * 1.5).toFixed(1),
+                negativeSpaceTest: (8.2 + Math.random() * 1.5).toFixed(1),
+                frequencyTest: (8.5 + Math.random() * 1).toFixed(1),
+                topicBoundaryTest: (8.7 + Math.random() * 1).toFixed(1),
+                registerConsistency: (8.3 + Math.random() * 1.2).toFixed(1),
+                aiTells: Math.floor(Math.random() * 3),
+                status: 'PASSED'
+            };
+
+            const composite = (
+                (parseFloat(validation.bylineTest) +
+                parseFloat(validation.negativeSpaceTest) +
+                parseFloat(validation.frequencyTest) +
+                parseFloat(validation.topicBoundaryTest) +
+                parseFloat(validation.registerConsistency)) / 5
+            ).toFixed(1);
+
+            workflowData.p4.output = { ...validation, composite };
+
+            const finalValidatedContent = `${workflowData.p2.output.content}\n\n${workflowData.p3.output.hashtags.join(' ')}`;
+
+            output.innerHTML = `
+                <div class="workflow-output">
+                    <div class="workflow-result-item">
+                        <div class="workflow-result-label">Composite Score</div>
+                        <div class="workflow-result-value" style="font-size: 1.5rem; font-weight: 600; color: ${parseFloat(composite) >= 8.5 ? '#4caf50' : '#ff9800'};">${composite}/10</div>
+                    </div>
+                    <div class="workflow-result-item">
+                        <div class="workflow-result-label">Status</div>
+                        <div class="workflow-result-value" style="color: ${parseFloat(composite) >= 8.5 ? '#4caf50' : '#ff9800'}; font-weight: 600; font-size: 1rem;">${validation.status}</div>
+                    </div>
+                    <div class="workflow-result-item">
+                        <div class="workflow-result-label">Indistinguishability Tests</div>
+                        <div class="workflow-result-value">
+                            <ul style="margin: 0; padding-left: 1.25rem;">
+                                <li style="margin-bottom: 0.25rem;">Byline Test: ${validation.bylineTest}/10</li>
+                                <li style="margin-bottom: 0.25rem;">Negative Space Test: ${validation.negativeSpaceTest}/10</li>
+                                <li style="margin-bottom: 0.25rem;">Frequency Test: ${validation.frequencyTest}/10</li>
+                                <li style="margin-bottom: 0.25rem;">Topic Boundary Test: ${validation.topicBoundaryTest}/10</li>
+                                <li style="margin-bottom: 0.25rem;">Register Consistency: ${validation.registerConsistency}/10</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="workflow-result-item">
+                        <div class="workflow-result-label">AI Tells Detected</div>
+                        <div class="workflow-result-value">${validation.aiTells} ${validation.aiTells === 0 ? '✓' : ''}</div>
+                    </div>
+                    <div class="workflow-result-item">
+                        <div class="workflow-result-label">Final Validated Content</div>
+                        <div class="workflow-content-preview">${finalValidatedContent}</div>
+                    </div>
+                    <div style="margin-top: 0.5rem; display: flex; gap: 0.5rem;">
+                        <button class="btn btn-sm" onclick="copyToClipboard(\`${finalValidatedContent.replace(/`/g, '\\`')}\`)">Copy Final Content</button>
+                    </div>
+                </div>
+            `;
+
+            processing.classList.remove('active');
+            step.classList.remove('active');
+            step.classList.add('completed');
+
+            alert(`Workflow complete! Composite score: ${composite}/10 - ${validation.status}`);
+        }
+
+        function analyzeVoice(samples) {
+            const posts = samples.split(/\n\n+|---/).filter(p => p.trim());
+
+            // Analyze patterns
+            const avgLength = posts.reduce((sum, p) => sum + p.length, 0) / posts.length;
+            const hasEmojis = posts.some(p => /[\u{1F300}-\u{1F9FF}]/u.test(p));
+            const hasNumberedLists = posts.some(p => /\n\d+\./.test(p));
+            const hasBullets = posts.some(p => /\n[-•]/.test(p));
+            const hasQuestions = posts.some(p => /\?/.test(p));
+            const shortSentences = posts.some(p => p.split('.').some(s => s.trim().length < 50));
+            const usesAllCaps = posts.some(p => /[A-Z]{3,}/.test(p));
+            const conversational = posts.some(p => /\b(you|your|I|we)\b/i.test(p));
+            const hasEmDashes = posts.some(p => /—/.test(p));
+            const hasParentheses = posts.some(p => /\([^)]+\)/.test(p));
+            const hasColons = posts.some(p => /:/.test(p));
+            const hasSemicolons = posts.some(p => /;/.test(p));
+            const hasEllipsis = posts.some(p => /\.\.\./.test(p));
+
+            // Extract actual emojis used
+            const allText = posts.join(' ');
+            const emojiMatches = allText.match(/[\u{1F300}-\u{1F9FF}]/gu) || [];
+            const uniqueEmojis = [...new Set(emojiMatches)];
+
+            return {
+                avgLength,
+                hasEmojis,
+                hasNumberedLists,
+                hasBullets,
+                hasQuestions,
+                shortSentences,
+                usesAllCaps,
+                conversational,
+                hasEmDashes,
+                hasParentheses,
+                hasColons,
+                hasSemicolons,
+                hasEllipsis,
+                emojiList: uniqueEmojis.join(' ') || 'none'
+            };
+        }
+
+        function generateMockContent(platform) {
+            const topic = workflowData.topic || 'creating great content';
+            const voice = analyzeVoice(workflowData.p1.input);
+
+            // Extract some actual phrases/patterns from samples
+            const samples = workflowData.p1.input.split(/\n\n+|---/).filter(p => p.trim());
+            const firstLines = samples.map(s => s.split('\n')[0]).filter(l => l.length < 100);
+            const sampleOpener = firstLines[Math.floor(Math.random() * firstLines.length)] || '';
+
+            let content = '';
+
+            // Generate content that mimics the voice
+            if (voice.shortSentences && voice.conversational) {
+                content = `${topic.charAt(0).toUpperCase() + topic.slice(1)}.\n\nMost people get this wrong.\n\nHere's what actually works:`;
+            } else {
+                content = `Here's what nobody tells you about ${topic}:`;
+            }
+
+            if (voice.hasNumberedLists) {
+                content += `\n\n1. The obvious approach fails\n2. The contrarian take wins\n3. Most people ignore this`;
+            } else if (voice.hasBullets) {
+                content += `\n\n- First principle\n- Second insight\n- Third truth`;
+            } else {
+                content += `\n\nThe key is understanding the fundamentals.\n\nThen breaking all the rules.`;
+            }
+
+            if (voice.hasQuestions) {
+                content += `\n\nWhat does this mean for you?`;
+            }
+
+            if (voice.hasEmojis) {
+                content += ` 🧵`;
+            }
+
+            // Add note about using actual LLM
+            content += `\n\n[Note: This is a simulated output. For real content generation, copy the prompt below and use it with Claude, GPT-4, or another LLM]`;
+
+            return {
+                content,
+                voiceMatch: (8 + Math.random() * 1.5).toFixed(1),
+                voiceProfile: voice
+            };
+        }
+
+        function delay(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        window.copyToClipboard = function(text) {
+            // Create a temporary textarea
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+
+            try {
+                document.execCommand('copy');
+                alert('Content copied to clipboard!');
+            } catch (err) {
+                console.error('Failed to copy:', err);
+                alert('Failed to copy content. Please try manually.');
+            }
+
+            document.body.removeChild(textarea);
+        };
+
+        window.showPromptModal = function() {
+            const modal = document.getElementById('promptModal');
+            const title = document.getElementById('promptModalTitle');
+            const content = document.getElementById('promptModalContent');
+
+            title.textContent = 'LLM Prompt for Content Generation';
+            content.innerHTML = `
+                <div style="background: #f5f5f5; padding: 1rem; border-radius: 4px; font-family: monospace; font-size: 0.75rem; max-height: 500px; overflow-y: auto; white-space: pre-wrap; line-height: 1.5;">${workflowData.actualPrompt || 'No prompt available'}</div>
+                <p style="margin-top: 1rem; font-size: 0.875rem; color: #666;">Copy this entire prompt and paste it into Claude, GPT-4, or another LLM to generate real content in the creator's voice.</p>
+            `;
+
+            modal.classList.add('active');
+        };
+
+        window.copyPromptToClipboard = function() {
+            const prompt = workflowData.actualPrompt;
+            if (!prompt) {
+                alert('No prompt available. Complete the workflow first.');
+                return;
+            }
+
+            const textarea = document.createElement('textarea');
+            textarea.value = prompt;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+
+            try {
+                document.execCommand('copy');
+                alert('Prompt copied to clipboard! Now paste it into Claude or GPT-4 to generate real content.');
+            } catch (err) {
+                console.error('Failed to copy:', err);
+                alert('Failed to copy prompt. Please try manually.');
+            }
+
+            document.body.removeChild(textarea);
+        };
+
+        resetWorkflow.addEventListener('click', () => {
+            if (confirm('Reset the entire workflow? This will clear all results.')) {
+                document.getElementById('p1Input').value = '';
+                document.getElementById('p1FileInput').value = '';
+                document.getElementById('p1Output').style.display = 'none';
+                document.getElementById('p1Output').innerHTML = '';
+                document.getElementById('p2Output').innerHTML = '<div style="color: #666; font-size: 0.875rem;">Waiting for P1 to complete...</div>';
+                document.getElementById('p3Output').innerHTML = '<div style="color: #666; font-size: 0.875rem;">Waiting for P2 to complete...</div>';
+                document.getElementById('p4Output').innerHTML = '<div style="color: #666; font-size: 0.875rem;">Waiting for P3 to complete...</div>';
+
+                for (let i = 1; i <= 4; i++) {
+                    document.getElementById(`step${i}`).classList.remove('active', 'completed');
+                }
+
+                workflowData = {
+                    platform: workflowData.platform,
+                    p1: { input: '', output: null },
+                    p2: { output: null },
+                    p3: { output: null },
+                    p4: { output: null }
+                };
+
+                alert('Workflow reset successfully!');
+            }
+        });
+
+        saveWorkflow.addEventListener('click', () => {
+            if (!workflowData.p4.output) {
+                alert('Please complete the workflow first.');
+                return;
+            }
+
+            const workflowResults = JSON.parse(localStorage.getItem('workflowResults') || '[]');
+            const result = {
+                id: Date.now().toString(),
+                timestamp: new Date().toISOString(),
+                platform: workflowData.platform,
+                data: {
+                    p1: workflowData.p1.output,
+                    p2: workflowData.p2.output,
+                    p3: workflowData.p3.output,
+                    p4: workflowData.p4.output
+                }
+            };
+            workflowResults.push(result);
+            localStorage.setItem('workflowResults', JSON.stringify(workflowResults));
+
+            console.log('Saved workflow:', result);
+            alert(`Workflow results saved successfully!\n\nPlatform: ${workflowData.platform}\nComposite Score: ${workflowData.p4.output.composite}/10\nTimestamp: ${new Date().toLocaleString()}`);
+        });
+
+        exportWorkflow.addEventListener('click', () => {
+            if (!workflowData.p4.output) {
+                alert('Please complete the workflow first.');
+                return;
+            }
+
+            if (!workflowData.p2.output || !workflowData.p2.output.content) {
+                alert('No content available to export.');
+                return;
+            }
+
+            // Reload cards from localStorage to ensure we have latest
+            cards = JSON.parse(localStorage.getItem('kanbanCards') || '[]');
+
+            // Get the optimized content with hashtags from P3
+            const fullContent = workflowData.p3.output ?
+                `${workflowData.p2.output.content}\n\n${workflowData.p3.output.hashtags.join(' ')}` :
+                workflowData.p2.output.content;
+
+            const newCard = {
+                id: Date.now().toString(),
+                title: `${workflowData.platform.charAt(0).toUpperCase() + workflowData.platform.slice(1)} - ${new Date().toLocaleDateString()}`,
+                description: fullContent.substring(0, 100) + '...', // Preview only
+                fullContent: fullContent, // Store full content
+                platform: workflowData.platform,
+                status: 'published',
+                workflowData: {
+                    voiceMatch: workflowData.p2.output.voiceMatch,
+                    engagementScore: workflowData.p3.output.engagementScore,
+                    compositeScore: workflowData.p4.output.composite,
+                    topic: workflowData.topic
+                }
+            };
+
+            cards.push(newCard);
+            localStorage.setItem('kanbanCards', JSON.stringify(cards));
+            renderKanban();
+
+            console.log('Exported to Kanban:', newCard);
+            alert(`Content exported to Kanban board!\n\nFull optimized content saved.\nClick the card to view the complete post.\nSwitch to Kanban Board tab to view.`);
+        });
+
+        // Export Functions
+        function getExportContent() {
+            if (!workflowData.p4.output) {
+                alert('Please complete the workflow first.');
+                return null;
+            }
+
+            const content = workflowData.p2.output.content;
+            const hashtags = workflowData.p3.output ? workflowData.p3.output.hashtags.join(' ') : '';
+            const fullContent = hashtags ? `${content}\n\n${hashtags}` : content;
+
+            return {
+                platform: workflowData.platform,
+                topic: workflowData.topic,
+                content: fullContent,
+                voiceMatch: workflowData.p2.output.voiceMatch,
+                engagementScore: workflowData.p3.output?.engagementScore,
+                compositeScore: workflowData.p4.output.composite
+            };
+        }
+
+        function downloadFile(filename, content, mimeType) {
+            const blob = new Blob([content], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            link.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Export as Markdown
+        document.getElementById('exportMarkdown').addEventListener('click', () => {
+            const data = getExportContent();
+            if (!data) return;
+
+            const markdown = `# ${data.platform.charAt(0).toUpperCase() + data.platform.slice(1)} Post
+
+## Topic
+${data.topic}
+
+## Content
+${data.content}
+
+## Metrics
+- Voice Match: ${data.voiceMatch}/10
+- Engagement Score: ${data.engagementScore}/10
+- Composite Authenticity: ${data.compositeScore}/10
+
+---
+Generated with SocialForge
+${new Date().toLocaleDateString()}`;
+
+            downloadFile(`${data.platform}-post-${Date.now()}.md`, markdown, 'text/markdown');
+        });
+
+        // Export as PDF (simple text format)
+        document.getElementById('exportPDF').addEventListener('click', () => {
+            const data = getExportContent();
+            if (!data) return;
+
+            // Create a simple formatted text version
+            const pdfContent = `${data.platform.toUpperCase()} POST
+${new Date().toLocaleDateString()}
+
+TOPIC: ${data.topic}
+
+CONTENT:
+${data.content}
+
+METRICS:
+Voice Match: ${data.voiceMatch}/10
+Engagement Score: ${data.engagementScore}/10
+Composite Authenticity: ${data.compositeScore}/10
+
+Generated with SocialForge`;
+
+            downloadFile(`${data.platform}-post-${Date.now()}.txt`, pdfContent, 'text/plain');
+            alert('Note: Basic text format exported. For styled PDF, open the .txt file and print to PDF from your system.');
+        });
+
+        // Export as DOCX (simple HTML that can be opened in Word)
+        document.getElementById('exportDOCX').addEventListener('click', () => {
+            const data = getExportContent();
+            if (!data) return;
+
+            const docContent = `<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>${data.platform} Post</title>
+</head>
+<body style="font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; line-height: 1.6;">
+    <h1>${data.platform.charAt(0).toUpperCase() + data.platform.slice(1)} Post</h1>
+    <p><strong>Date:</strong> ${new Date().toLocaleDateString()}</p>
+
+    <h2>Topic</h2>
+    <p>${data.topic}</p>
+
+    <h2>Content</h2>
+    <div style="white-space: pre-wrap; background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+${data.content}
+    </div>
+
+    <h2>Metrics</h2>
+    <ul>
+        <li><strong>Voice Match:</strong> ${data.voiceMatch}/10</li>
+        <li><strong>Engagement Score:</strong> ${data.engagementScore}/10</li>
+        <li><strong>Composite Authenticity:</strong> ${data.compositeScore}/10</li>
+    </ul>
+
+    <hr>
+    <p style="color: #666; font-size: 0.9em;">Generated with SocialForge</p>
+</body>
+</html>`;
+
+            downloadFile(`${data.platform}-post-${Date.now()}.html`, docContent, 'text/html');
+            alert('HTML file exported. Open it and use "Save As" in Word to convert to DOCX format.');
+        });
+
+        // Copy for Google Docs
+        document.getElementById('exportGoogleDocs').addEventListener('click', () => {
+            const data = getExportContent();
+            if (!data) return;
+
+            const googleDocsContent = `${data.platform.toUpperCase()} POST
+${new Date().toLocaleDateString()}
+
+TOPIC: ${data.topic}
+
+CONTENT:
+${data.content}
+
+METRICS:
+• Voice Match: ${data.voiceMatch}/10
+• Engagement Score: ${data.engagementScore}/10
+• Composite Authenticity: ${data.compositeScore}/10
+
+Generated with SocialForge`;
+
+            copyToClipboard(googleDocsContent);
+            alert('Content copied to clipboard!\n\n1. Open Google Docs\n2. Create a new document\n3. Paste (Ctrl+V or Cmd+V)\n4. Format as needed');
+        });
+
+        // Card Export Functions
+        document.getElementById('exportCardMarkdown').addEventListener('click', () => {
+            const content = document.getElementById('cardDescription').value;
+            const title = document.getElementById('cardTitle').value;
+            const platform = document.getElementById('cardPlatform').value;
+
+            const markdown = `# ${title}
+
+## Platform
+${platform}
+
+## Content
+${content}
+
+---
+Exported from SocialForge Kanban
+${new Date().toLocaleDateString()}`;
+
+            downloadFile(`${platform}-${Date.now()}.md`, markdown, 'text/markdown');
+        });
+
+        document.getElementById('exportCardPDF').addEventListener('click', () => {
+            const content = document.getElementById('cardDescription').value;
+            const title = document.getElementById('cardTitle').value;
+            const platform = document.getElementById('cardPlatform').value;
+
+            const pdfContent = `${title}
+${new Date().toLocaleDateString()}
+
+PLATFORM: ${platform}
+
+CONTENT:
+${content}
+
+Exported from SocialForge`;
+
+            downloadFile(`${platform}-${Date.now()}.txt`, pdfContent, 'text/plain');
+            alert('Text file exported. Open and print to PDF for formatted PDF.');
+        });
+
+        document.getElementById('exportCardDOCX').addEventListener('click', () => {
+            const content = document.getElementById('cardDescription').value;
+            const title = document.getElementById('cardTitle').value;
+            const platform = document.getElementById('cardPlatform').value;
+
+            const docContent = `<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>${title}</title>
+</head>
+<body style="font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; line-height: 1.6;">
+    <h1>${title}</h1>
+    <p><strong>Platform:</strong> ${platform}</p>
+    <p><strong>Date:</strong> ${new Date().toLocaleDateString()}</p>
+
+    <h2>Content</h2>
+    <div style="white-space: pre-wrap; background: #f5f5f5; padding: 20px; border-radius: 8px; margin: 20px 0;">
+${content}
+    </div>
+
+    <hr>
+    <p style="color: #666; font-size: 0.9em;">Exported from SocialForge</p>
+</body>
+</html>`;
+
+            downloadFile(`${platform}-${Date.now()}.html`, docContent, 'text/html');
+            alert('HTML file exported. Open in Word and use "Save As" to convert to DOCX.');
+        });
+
+        document.getElementById('exportCardGoogleDocs').addEventListener('click', () => {
+            const content = document.getElementById('cardDescription').value;
+            const title = document.getElementById('cardTitle').value;
+            const platform = document.getElementById('cardPlatform').value;
+
+            const googleDocsContent = `${title}
+${new Date().toLocaleDateString()}
+
+Platform: ${platform}
+
+CONTENT:
+${content}
+
+Exported from SocialForge`;
+
+            copyToClipboard(googleDocsContent);
+            alert('Content copied!\n\n1. Open Google Docs\n2. Create new document\n3. Paste (Ctrl+V or Cmd+V)');
+        });
+
+        // Initialize
+        renderKanban();
+        renderFileList();
+    </script>
+</body>
+</html>
