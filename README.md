@@ -1,15 +1,44 @@
-# SocialForge — AI Social Media Voice Cloning Prompt Library
-## Version 1.0 // February 2026
+# SocialForge — AI Social Media Voice Cloning System
+## February 2026
 
 ---
 
 ## What This Is
 
-SocialForge is a standalone prompt library that analyzes any creator's existing social media content and generates new content indistinguishable from the original creator. It is the social media counterpart to GhostForge (which does the same for book-length manuscripts).
+SocialForge is a complete system for creating AI-powered social media content that's indistinguishable from a creator's real posts. It analyzes any creator's existing content and generates new content that passes the Byline Test: 7 out of 10 followers cannot tell the difference.
 
-Feed it 30-50 real posts from a recognizable creator on any platform. It captures their voice, maps their strategy, and produces content that passes the Byline Test: 7 out of 10 followers cannot distinguish the generated content from the real thing.
+This is the social media counterpart to GhostForge (which does the same for book-length manuscripts).
 
-**This is a prompt library, not a SaaS product.** Each prompt is a self-contained system prompt. Copy it into any LLM interface and use it directly.
+### Two Components in This Repository:
+
+**1. Prompt Library (v1.0)** — 43 Professional Prompts
+- 3 core prompts + 40 platform-specific prompts (4 per platform × 10 platforms)
+- Standalone system prompts for any LLM (Claude, GPT-4, etc.)
+- Self-contained with full SAP (Social Authenticity Protocol) enforcement
+- Each prompt is a complete .md file - copy and use directly
+
+**2. Dashboard (v2.0)** — Production-Ready HTML Tool
+- Single-file HTML application (`dashboard-final.html`)
+- Automated P1→P2→P3→P4 workflow
+- Real voice analysis (20+ metrics, zero fake data)
+- World-class prompt generation for LLM use
+- Kanban board + export system
+- **[See DASHBOARD_README.md for full documentation](DASHBOARD_README.md)**
+
+---
+
+## Quick Start
+
+**Option A: Use the Dashboard (Recommended)**
+1. Open `dashboard-final.html` in your browser
+2. Follow the P1→P2→P3→P4 workflow
+3. Get production-ready content with validation
+
+**Option B: Use Prompts Directly**
+1. Navigate to platform folder (e.g., `instagram/`)
+2. Copy prompt file (e.g., `P2_instagram_generator.md`)
+3. Paste into Claude or GPT-4
+4. Follow prompt instructions
 
 ---
 
@@ -373,7 +402,19 @@ Each platform's prompts are written by specialists who understand that platform'
 
 ---
 
-**System:** SocialForge AI Social Media Voice Cloning Prompt Library
-**Version:** 1.0
-**Architecture:** 10-Section Universal Prompt Standard
-**Created:** February 10, 2026
+## Repository Contents
+
+**Prompt Library (v1.0)**
+- System: SocialForge AI Social Media Voice Cloning Prompt Library
+- Architecture: 10-Section Universal Prompt Standard
+- Created: February 10, 2026
+- Files: 43 prompts (.md files) + 2 specifications
+
+**Dashboard (v2.0)**
+- System: SocialForge Production Dashboard
+- Type: Single-file HTML application (zero dependencies)
+- Released: February 13, 2026
+- Status: Production-ready, zero fake data
+- Documentation: See [DASHBOARD_README.md](DASHBOARD_README.md)
+
+**Last Updated:** February 13, 2026
