@@ -610,6 +610,18 @@ Discard any changes where the voice drift exceeds the performance gain.
 
 ---
 
+CRITICAL OUTPUT REQUIREMENT:
+Your response MUST begin with the COMPLETE OPTIMIZED CONTENT — the full,
+ready-to-use final version with all applied optimizations merged in.
+
+Format:
+---BEGIN OPTIMIZED CONTENT---
+[Complete optimized content here — ready to copy/paste and use as-is]
+---END OPTIMIZED CONTENT---
+
+[Then output the full optimization report below]
+
+
 # Section 9: Structured Output Format
 
 ```yaml

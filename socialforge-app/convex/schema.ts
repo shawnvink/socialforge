@@ -23,6 +23,7 @@ export default defineSchema({
     topic: v.string(),
     generatedContent: v.string(),
     optimizedContent: v.optional(v.string()),
+    optimizationReport: v.optional(v.string()),
     validationReport: v.optional(v.string()),
     validationScore: v.optional(v.number()),
     kanbanStatus: v.string(),

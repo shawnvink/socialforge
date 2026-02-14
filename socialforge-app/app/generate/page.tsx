@@ -7,7 +7,7 @@ import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { PLATFORMS, ANTHROPIC_MODELS, OPENROUTER_MODELS } from "@/lib/llm/models";
 import { formatCost, formatTokens } from "@/lib/utils";
-import { Loader2, Copy, Check, ChevronRight, Sparkles, Save, UserCircle, Brain, Square, RefreshCw, ArrowRight } from "lucide-react";
+import { Loader2, Copy, Check, ChevronRight, ChevronDown, Sparkles, Save, UserCircle, Brain, Square, RefreshCw, ArrowRight } from "lucide-react";
 import { buildBridgingContext, isCrossPlatform, getPlatformName } from "@/lib/prompts/crossPlatformAdapter";
 
 type Step = "analyze" | "generate" | "optimize" | "validate";
@@ -32,6 +32,20 @@ function parseHelixScore(text: string): number {
     if (match) return Math.min(10, Math.max(0, parseFloat(match[1])));
   }
   return 0;
+}
+
+function parseOptimizedOutput(raw: string): { content: string; report: string } {
+  const beginMarker = "---BEGIN OPTIMIZED CONTENT---";
+  const endMarker = "---END OPTIMIZED CONTENT---";
+  const beginIdx = raw.indexOf(beginMarker);
+  const endIdx = raw.indexOf(endMarker);
+  if (beginIdx !== -1 && endIdx !== -1) {
+    return {
+      content: raw.slice(beginIdx + beginMarker.length, endIdx).trim(),
+      report: raw.slice(endIdx + endMarker.length).trim(),
+    };
+  }
+  return { content: raw, report: "" };
 }
 
 function parseValidationScore(text: string): number {
@@ -75,6 +89,7 @@ function GenerateContent() {
   const [expressionProfile, setExpressionProfile] = useState("");
   const [generatedContent, setGeneratedContent] = useState("");
   const [optimizedContent, setOptimizedContent] = useState("");
+  const [optimizationReport, setOptimizationReport] = useState("");
   const [validationReport, setValidationReport] = useState("");
 
   // Saved IDs
@@ -337,11 +352,15 @@ function GenerateContent() {
         }
         setStep("optimize");
       } else if (currentStep === "optimize") {
-        optimizedContentRef.current = fullContent;
+        const parsed = parseOptimizedOutput(fullContent);
+        optimizedContentRef.current = parsed.content;
+        setOptimizedContent(parsed.content);
+        setOptimizationReport(parsed.report);
         if (savedContentId) {
           await updateContent({
             id: savedContentId,
-            optimizedContent: fullContent,
+            optimizedContent: parsed.content,
+            optimizationReport: parsed.report || undefined,
           });
           await logUsage({
             profileId: savedProfileId ?? undefined,
@@ -969,6 +988,25 @@ function GenerateContent() {
               streaming
             />
           )}
+
+          {/* Parsed optimized content (after completion) */}
+          {!loading && optimizedContent && (
+            <OutputBlock
+              title="Optimized Content"
+              content={optimizedContent}
+              onCopy={() => copyText(optimizedContent)}
+              copied={copied}
+            />
+          )}
+
+          {/* Collapsible optimization report */}
+          {!loading && optimizationReport && (
+            <CollapsibleSection title="Optimization Details">
+              <pre className="whitespace-pre-wrap font-mono text-[13px] leading-relaxed text-foreground/80">
+                {optimizationReport}
+              </pre>
+            </CollapsibleSection>
+          )}
         </div>
       )}
 
@@ -1075,6 +1113,22 @@ function GenerateContent() {
           )}
         </div>
       )}
+    </div>
+  );
+}
+
+function CollapsibleSection({ title, children }: { title: string; children: React.ReactNode }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="rounded-2xl border bg-card">
+      <button
+        onClick={() => setOpen(!open)}
+        className="flex w-full items-center justify-between px-6 py-4 text-left"
+      >
+        <h3 className="text-[15px] font-semibold">{title}</h3>
+        <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform ${open ? "rotate-180" : ""}`} />
+      </button>
+      {open && <div className="border-t px-6 py-5">{children}</div>}
     </div>
   );
 }

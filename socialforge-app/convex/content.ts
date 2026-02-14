@@ -69,6 +69,7 @@ export const update = mutation({
     id: v.id("content"),
     kanbanStatus: v.optional(v.string()),
     optimizedContent: v.optional(v.string()),
+    optimizationReport: v.optional(v.string()),
     validationReport: v.optional(v.string()),
     validationScore: v.optional(v.number()),
   },

@@ -13,6 +13,7 @@ import {
   Trash2,
   Copy,
   Check,
+  ChevronDown,
   Loader2,
   Sparkles,
   User,
@@ -186,6 +187,18 @@ export default function ContentDetailPage({
         />
       )}
 
+      {/* Optimization Report */}
+      {content.optimizationReport && (
+        <ContentSection
+          title="Optimization Details"
+          content={content.optimizationReport}
+          onCopy={() => copyText(content.optimizationReport!, "optimization-report")}
+          copied={copiedSection === "optimization-report"}
+          mono
+          defaultCollapsed
+        />
+      )}
+
       {/* Validation Report */}
       {content.validationReport && (
         <ContentSection
@@ -217,17 +230,29 @@ function ContentSection({
   onCopy,
   copied,
   mono,
+  defaultCollapsed,
 }: {
   title: string;
   content: string;
   onCopy: () => void;
   copied: boolean;
   mono?: boolean;
+  defaultCollapsed?: boolean;
 }) {
+  const [collapsed, setCollapsed] = useState(!!defaultCollapsed);
+
   return (
     <div className="rounded-2xl border bg-card">
       <div className="flex items-center justify-between border-b px-6 py-4">
-        <h2 className="text-[15px] font-semibold">{title}</h2>
+        <button
+          onClick={() => defaultCollapsed && setCollapsed(!collapsed)}
+          className={`flex items-center gap-2 ${defaultCollapsed ? "cursor-pointer" : "cursor-default"}`}
+        >
+          {defaultCollapsed && (
+            <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform ${collapsed ? "-rotate-90" : ""}`} />
+          )}
+          <h2 className="text-[15px] font-semibold">{title}</h2>
+        </button>
         <button
           onClick={onCopy}
           className="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-[12px] font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
@@ -236,13 +261,15 @@ function ContentSection({
           {copied ? "Copied" : "Copy"}
         </button>
       </div>
-      <div className="px-6 py-5">
-        <div className={`whitespace-pre-wrap leading-relaxed text-foreground/85 ${
-          mono ? "font-mono text-[13px]" : "text-[14px] leading-[1.7]"
-        }`}>
-          {content}
+      {!collapsed && (
+        <div className="px-6 py-5">
+          <div className={`whitespace-pre-wrap leading-relaxed text-foreground/85 ${
+            mono ? "font-mono text-[13px]" : "text-[14px] leading-[1.7]"
+          }`}>
+            {content}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

@@ -554,6 +554,18 @@ If yes, optimization is complete. If no, revise.
 
 ---
 
+CRITICAL OUTPUT REQUIREMENT:
+Your response MUST begin with the COMPLETE OPTIMIZED CONTENT — the full,
+ready-to-use final version with all applied optimizations merged in.
+
+Format:
+---BEGIN OPTIMIZED CONTENT---
+[Complete optimized content here — ready to copy/paste and use as-is]
+---END OPTIMIZED CONTENT---
+
+[Then output the full optimization report below]
+
+
 # SECTION 9: STRUCTURED OUTPUT FORMAT
 
 ```

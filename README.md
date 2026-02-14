@@ -74,7 +74,7 @@ This is the social media counterpart to GhostForge (which does the same for book
 |---|--------|---------|
 | P1 | Platform Analyzer | Deep analysis of 20-50 posts on a specific platform → Platform Expression Profile (6 dimensions) |
 | P2 | Content Generator | Main engine: Voice Bible + Platform Profile + topic → indistinguishable content |
-| P3 | Content Optimizer | Algorithm alignment, hashtag/keyword optimization, engagement potential scoring |
+| P3 | Content Optimizer | Algorithm alignment, hashtag/keyword optimization, engagement potential scoring. **Outputs complete optimized content first**, then a separate optimization report |
 | P4 | Authenticity Validator | The "indistinguishable" test: scores voice fidelity, flags AI tells, enforces SAP |
 
 ---
@@ -129,7 +129,7 @@ This is the social media counterpart to GhostForge (which does the same for book
 ### Step 4: Optimize (Optional)
 
 12. Run the relevant **P3 (Content Optimizer)** on the generated content
-13. Output: Optimized content with algorithm alignment and engagement recommendations
+13. Output: Complete optimized content (ready to copy/paste) wrapped in `---BEGIN OPTIMIZED CONTENT---` / `---END OPTIMIZED CONTENT---` markers, followed by a separate optimization report with scores, analysis, and recommendations
 
 ### Step 5: Validate
 
@@ -469,11 +469,11 @@ SocialForge inherits foundational architecture from GhostForge's prompt library 
 
 | Metric | Value |
 |--------|-------|
-| Total prompt files | 43 |
+| Total prompt files | 47 |
 | Specification documents | 2 |
-| Platforms covered | 10 |
+| Platforms covered | 11 |
 | Core prompts | 3 |
-| Platform-specific prompts | 40 (4 per platform) |
+| Platform-specific prompts | 44 (4 per platform × 11 platforms) |
 | Voice dimensions (core) | 12 |
 | Platform expression dimensions | 6 |
 | Indistinguishability tests | 5 |
@@ -524,3 +524,20 @@ Each platform's prompts are written by specialists who understand that platform'
 - Documentation: See [socialforge-app/README.md](socialforge-app/README.md)
 
 **Last Updated:** February 14, 2026
+
+---
+
+## Changelog
+
+### v3.1 — P3 Optimizer Content/Report Separation (February 14, 2026)
+
+**Problem:** P3 optimizer previously output only an optimization report (scores, analysis, suggestions) but not the actual merged optimized content. Users got raw P2 content plus a report, but nothing stitched them together. P4 validator also received the report as "content to validate," degrading validation quality.
+
+**Fix:**
+- All 11 P3 optimizer prompts now output complete optimized content first (wrapped in `---BEGIN OPTIMIZED CONTENT---` / `---END OPTIMIZED CONTENT---` markers), then the optimization report
+- App parses and separates content from report automatically
+- Optimized content is shown in the main panel (what users copy/paste)
+- Optimization report is shown in a collapsible "Optimization Details" section
+- P4 validator and refinement loop receive only the clean content
+- New `optimizationReport` field in Convex database stores the report separately
+- Content detail page shows content and report in separate sections

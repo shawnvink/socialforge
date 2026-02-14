@@ -20,6 +20,7 @@ Full-stack Next.js application for cloning any creator's voice across 11 platfor
 
 - **11 Platforms**: YouTube, Instagram, LinkedIn, Twitter/X, TikTok, Newsletter, Podcast, Blog, Threads, Facebook, Email Copywriting
 - **4-Step Pipeline**: P1 Analyze → P2 Generate → P3 Optimize → P4 Validate
+- **P3 Content/Report Separation**: Optimizer outputs complete ready-to-use content separately from the optimization report. Content is shown in the main panel; report is in a collapsible "Optimization Details" section. P4 and refinement loop receive only the clean content.
 - **Cross-Platform Voice Adaptation**: Use any profile on any platform — voice DNA is preserved, platform patterns are adapted automatically
 - **Auto-Refinement Loop**: Automatically re-optimizes and re-validates until score reaches 9+/10 (up to 5 rounds)
 - **Prompt Caching**: Anthropic prompt caching enabled — 90% savings on repeated system prompts
@@ -225,9 +226,9 @@ socialforge-app/
 │       ├── prompts/route.ts  # Prompt loader API
 │       └── settings/route.ts # Settings API
 ├── convex/                   # Convex backend
-│   ├── schema.ts             # Database schema (profiles, content, usage)
+│   ├── schema.ts             # Database schema (profiles, content, usage, optimizationReport)
 │   ├── profiles.ts           # Profile CRUD operations
-│   ├── content.ts            # Content CRUD operations
+│   ├── content.ts            # Content CRUD + optimizationReport storage
 │   └── analytics.ts          # Usage tracking + stats
 ├── lib/
 │   ├── llm/
