@@ -142,6 +142,51 @@ ACTION: For each title option:
 - Confirm it follows one of the creator's documented title templates
 - Compare against competitor titles (if provided) for differentiation
 - Suggest specific refinements with rationale
+
+ADVANCED: Genesis Neuro-Linguistic Title Optimization
+(ONLY USE IF CREATOR'S GENESIS USAGE SCORE >= 5)
+
+NEUROCHEMICAL TRIGGER ENHANCEMENT:
+- Add Dopamine (reward): Low-cost solution or valuable insight
+- Add Norepinephrine (attention): High-stakes element
+- Add Cortisol (urgency): Time constraint or "watch now" trigger
+- Add Oxytocin (trust): Personal/relatable element
+
+SUBCONSCIOUS BYPASS UPGRADES:
+- Identity Hijacking: Replace generic terms with hyper-specific identifiers
+  Before: "for YouTubers" → After: "for the creator stuck at 100 subs"
+- Credibility Osmosis: Borrow authority from bigger creators
+  Before: "Growth strategy" → After: "The MrBeast Strategy Small Channels Use"
+- Cognitive Fluency: Add rhyme/alliteration/familiar pattern
+
+POWER WORD INJECTION (match creator's frequency):
+- Scarcity: Last, Final, Ending, Gone, Closing
+- Curiosity: Secret, Hidden, Exposed, Revealed, Underground
+- Authority: Insider, Expert, Pro, Master, Elite
+- Tribal: Smart, Savvy, Winning, Advanced
+- Exclusivity: Private, Exclusive, Members-Only, VIP
+
+QUANTUM ENTANGLEMENT CREATION:
+Formula: [Familiar A] + [Unexpected Connector] + [Valuable B] + [Constraint]
+Before: "How to get more views"
+After: "The Janitor's Secret That Gets 1M Views (Works for Small Channels)"
+
+TEMPORAL DISPLACEMENT:
+- Past Anchoring: "The 2010 Strategy Crushing YouTube in 2026"
+- Future Pulling: "When AI Takes Over YouTube (What to Do Now)"
+- Present Urgency: "The Next 30 Days Will Decide Your Channel"
+
+MEMETIC STICKINESS:
+- Incomplete Loop: "The Missing Piece Every Viral Video Has (Not What You Think)"
+- Paradox: "How Deleting Videos Grew My Channel to 1M Subs"
+- Pattern Break: "Dear Small YouTubers: Stop Trying to Go Viral"
+
+IDENTITY TRANSFORMATION:
+Shift from having to becoming:
+Before: "Get more subscribers"
+After: "Become the YouTuber Everyone Wishes They Were"
+
+CRITICAL: All optimizations must maintain voice authenticity. If Genesis technique breaks creator's voice, reject it.
 ```
 
 ## Step 3: Thumbnail Concept Optimization

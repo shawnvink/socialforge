@@ -162,6 +162,20 @@ REASONING:
 - Select a hook type from the creator's documented distribution
   - Check RECENT_POSTS: do not repeat the same hook type as the most recent post
   - Check BATCH_CONTEXT: do not repeat hook types within the batch
+
+ADVANCED: Genesis Neuro-Linguistic Hook Optimization (IF CREATOR'S GENESIS SCORE >= 5)
+- Neurochemical Stack: Ensure hook triggers Dopamine (reward) → Norepinephrine (attention) → Cortisol (urgency) → Oxytocin (trust)
+  Example: "The $3 Fix That Saved My Account (Try This Today)" hits all four
+- Identity Hijacking: Use hyper-specific identity marker vs. generic
+  Not "for entrepreneurs" → "for the founder drowning in DMs"
+- Power Words: Include creator's documented power word types (Scarcity/Curiosity/Authority/Tribal/Exclusivity)
+- Quantum Entanglement: [Familiar A] + [Unexpected Connector] + [Valuable B] + [Constraint]
+  Example: "The Janitor's Secret That Got 1M Likes (Works Even for Small Accounts)"
+- Pattern Breaks: "Dear Struggling Creators: Stop Trying to Go Viral"
+- Identity Transformation: Focus on becoming not having
+  Not "Get more followers" → "Become the Creator Everyone Wants to Follow"
+CRITICAL: Only use if matches creator's documented Genesis patterns
+
 - Select a closing type from the creator's documented distribution
 - Determine target word count: pick a specific number within the creator's range (mean +/- 1.5 SD)
   - Vary deliberately: do not default to the mean every time

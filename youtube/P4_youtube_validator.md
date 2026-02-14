@@ -76,6 +76,47 @@ Compare the thumbnail concept against documented thumbnail patterns. Check all v
 
 Scoring: Binary pass/fail for each element. Target: all elements pass.
 
+### Advanced Test 4.5: Genesis Neuro-Linguistic Title Validation
+(ONLY VALIDATE IF CREATOR'S GENESIS USAGE SCORE >= 5)
+
+If YouTube Expression Profile shows creator uses neuro-linguistic techniques, validate:
+
+**Neurochemical Trigger Stack:**
+✓/✗ Dopamine (Reward): Contains value promise
+✓/✗ Norepinephrine (Attention): Contains importance signal
+✓/✗ Cortisol (Urgency): Contains time/action pressure
+✓/✗ Oxytocin (Trust): Contains personal/relatable element
+Score: [0-4 triggers present]
+
+**Subconscious Bypass Techniques:**
+✓/✗ Identity Hijacking: Uses hyper-specific identity marker
+✓/✗ Credibility Osmosis: Borrows authority from bigger entity
+✓/✗ Cognitive Fluency: Uses rhyme/alliteration/familiar pattern
+
+**Power Word Count:**
+Count power words present (Scarcity/Curiosity/Authority/Tribal/Exclusivity)
+Total: [X words] | Creator's Range: [Y-Z words]
+
+**Quantum Entanglement:**
+✓/✗ Uses [Familiar A] + [Unexpected Connector] + [Valuable B] + [Constraint]
+
+**Temporal Displacement:**
+✓/✗ Uses Past Anchoring / Future Pulling / Present Urgency
+
+**Memetic Stickiness:**
+✓/✗ Creates Incomplete Loop / Paradox / Pattern Break
+
+**Resonance Frequency Match:**
+Creator's Frequency: [Survival/Power/Social/Transcendence]
+Title's Frequency: [Survival/Power/Social/Transcendence]
+Match: ✓/✗
+
+**Identity Transformation:**
+✓/✗ Focuses on becoming (not having)
+
+**Genesis Validation Score:** [0-10]
+Pass Threshold: Must match creator's Genesis Usage Score +/- 2 points
+
 ### Test 5: The Format Consistency Test
 Verify that the generated content follows the structural patterns documented for the specific format (long-form, Short, community post):
 - Hook type matches documented options

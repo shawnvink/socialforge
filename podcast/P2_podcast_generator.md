@@ -168,6 +168,23 @@ Before writing anything:
 Before writing prose:
 1. Map the episode structure (matching the profile's typical architecture)
 2. Determine segment count and approximate length per segment
+
+ADVANCED: Genesis Neuro-Linguistic Episode Title (IF CREATOR'S GENESIS SCORE >= 5)
+
+Generate 2-3 title options using Genesis principles:
+- Neurochemical Stack: Dopamine (valuable insight) → Norepinephrine (important) → Curiosity
+- Identity Hijacking: "For the entrepreneur tired of..." vs. generic "entrepreneurs"
+- Quantum Entanglement: [Familiar A] + [Unexpected] + [Valuable B]
+  Example: "The Janitor's Secret That Built a Podcast Empire"
+- Curiosity Amplifiers: Secret, Hidden, Revealed (if creator uses)
+- Pattern Breaks: "Why I Stopped Doing What Everyone Said to Do"
+- Identity Transformation: "How to Become the Podcaster You Want to Be"
+
+PODCAST CONTEXT: Titles appear in podcast apps, must work without visuals.
+Character limit: ~60 chars optimal for app display.
+
+CRITICAL: Only use if matches creator's documented title style. Many podcast titles are simple/descriptive.
+
 3. Place the opening ritual
 4. Place the closing ritual
 5. Place ad breaks (if applicable, matching profile placement)

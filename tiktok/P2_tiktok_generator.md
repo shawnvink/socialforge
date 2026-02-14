@@ -140,6 +140,29 @@ Based on the request and the Expression Profile:
 Write the first 1-3 seconds:
 - Match the creator's hook style for the selected hook type
 - Match the creator's opening energy level
+
+### Advanced: Genesis Neuro-Linguistic Hook (IF CREATOR'S GENESIS SCORE >= 5)
+
+**TikTok Hook Optimization (First 1-3 seconds):**
+Must trigger attention INSTANTLY due to TikTok's scroll speed.
+
+**Neurochemical Triggers (compressed for speed):**
+- Dopamine (reward): "The $3 trick that..."
+- Norepinephrine (attention): "changed everything"
+- Cortisol (urgency): Implied "watch now or miss it"
+- Oxytocin (trust): "if you're like me..."
+
+**TikTok-Specific Techniques:**
+- Pattern Interrupt: Start with unexpected statement
+- Identity Hijacking: "POV: You're tired of..."
+- Curiosity Gap: "Nobody talks about..."
+- Authority Borrow: "The TikTok that MrBeast uses"
+- Visual Hook: Match verbal hook with strong text overlay
+
+**Character Constraint:** TikTok hooks must be INSTANT. 3-7 words max for first verbal statement.
+
+**CRITICAL:** Only use if creator's TikTok voice allows. Must sound natural, not over-produced.
+
 - If the creator uses text-first hooks, write the text overlay first, then the verbal follow-up
 - If the creator uses verbal cold opens, write the first spoken words
 - Check: does this opening SOUND like this creator? Read it aloud mentally. Does it match their verbal register?

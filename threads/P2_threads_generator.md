@@ -131,6 +131,28 @@ Based on the content type requested:
 
 **Single Post (up to 500 characters):**
 - Select an opening pattern from the creator's documented repertoire
+
+### Advanced: Genesis Neuro-Linguistic Threads Opener (IF CREATOR'S GENESIS SCORE >= 5)
+
+**Threads Context:** Conversational, Twitter-like, but longer form (500 chars vs 280)
+
+**Neurochemical Triggers (Compressed):**
+- Dopamine + Norepinephrine in first line (value + attention)
+- Curiosity Gap to encourage engagement
+- Identity Hijacking: "POV: You're the founder who..." vs. generic
+
+**Threads-Optimized Techniques:**
+- Pattern Interrupt: Start with unexpected statement
+- Identity Hijacking: "For the creator tired of..." (hyper-specific)
+- Curiosity: "The thing nobody talks about..."
+- Quantum (compressed): "The $3 trick that changed my..."
+- Pattern Break: "Dear struggling founders: Stop..."
+- Conversation Starter: End with engagement hook
+
+**Character Constraint:** 500 chars total. First 1-2 sentences are critical.
+
+**CRITICAL:** Threads is conversational. Genesis must feel natural, not over-optimized. Voice authenticity > optimization.
+
 - Structure the body using the creator's observed formatting style
 - Close using the creator's documented closing patterns
 - Verify character count is within the creator's typical range

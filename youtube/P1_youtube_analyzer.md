@@ -183,6 +183,66 @@ ACTION: Map all title patterns:
 - Emotional trigger words (frequency and type)
 - Clickbait calibration (1-10 scale: 1 = purely informational, 10 = extreme bait)
 - Number usage (lists, stats, years, money amounts)
+
+ADVANCED ANALYSIS: Genesis Neuro-Linguistic Title Architecture
+
+Analyze if creator uses neuro-linguistic headline techniques:
+
+NEUROCHEMICAL TRIGGER DETECTION:
+- Dopamine (reward): X% of titles contain value promise ("$3 fix", "simple trick")
+- Norepinephrine (attention): X% contain high-stakes element ("changed everything", "massive")
+- Cortisol (urgency): X% contain time pressure ("now", "before", "today")
+- Oxytocin (trust): X% contain personal/relatable element ("if you're tired of", "for struggling")
+- Full Stack Usage: X% trigger all 4 chemicals in sequence
+
+SUBCONSCIOUS BYPASS TECHNIQUES:
+- Identity Hijacking: X% use hyper-specific identity markers vs. generic audience terms
+- Credibility Osmosis: X% borrow authority from bigger entities ("The MrBeast Strategy...")
+- Cognitive Fluency: X% use rhyme/alliteration/familiar patterns
+
+POWER WORD DISTRIBUTION:
+- Scarcity Inducers: X% (Last, Final, Ending, Gone, Closing)
+- Curiosity Amplifiers: X% (Secret, Hidden, Exposed, Revealed, Underground)
+- Authority Borrowers: X% (Insider, Expert, Pro, Master, Elite)
+- Tribal Identifiers: X% (Smart, Savvy, Winning, Advanced, Elite)
+- Exclusivity Markers: X% (Private, Exclusive, Members-Only, VIP)
+
+QUANTUM ENTANGLEMENT:
+X% use [Familiar A] + [Unexpected Connector] + [Valuable B] + [Constraint]
+Examples: "[Actual creator titles matching this pattern]"
+
+TEMPORAL DISPLACEMENT:
+- Past Anchoring: X% (e.g., "The 2010 Strategy...")
+- Future Pulling: X% (e.g., "When AI Takes Over...")
+- Present Urgency: X% (e.g., "Next 30 Days...")
+
+MEMETIC STICKINESS:
+- Incomplete Loops: X% ("The Missing Piece...")
+- Paradox Creation: X% ("How Deleting Videos Grew...")
+- Pattern Breaks: X% ("Dear Small YouTubers: Stop...")
+
+RESONANCE FREQUENCY:
+- Survival (fear-based): X%
+- Power (dominance-based): X%
+- Social (belonging-based): X%
+- Transcendence (purpose-based): X%
+
+METACOGNITIVE TECHNIQUES:
+X% make viewer aware of their thinking
+Examples: "[Actual titles]"
+
+CONSCIOUSNESS HACK:
+X% acknowledge persuasion attempt
+Examples: "[Actual titles]"
+
+IDENTITY TRANSFORMATION:
+X% focus on becoming (not having)
+Examples: "[Actual titles]"
+
+GENESIS USAGE SCORE: [0-10]
+0 = Never uses neuro-linguistic techniques
+5 = Uses some power words and curiosity gaps
+10 = Master-level neuro-linguistic title architect
 ```
 
 ## Step 5: Thumbnail Pattern Analysis

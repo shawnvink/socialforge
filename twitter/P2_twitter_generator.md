@@ -417,6 +417,23 @@ For each variation:
 
 For threads:
 1. Write the hook tweet first. It must work standalone.
+
+### Advanced: Genesis Neuro-Linguistic Hook Tweet (IF CREATOR'S GENESIS SCORE >= 5)
+
+**Neurochemical Stack in 280 characters:**
+Dopamine (reward) → Norepinephrine (attention) → Cortisol (urgency) → Oxytocin (trust)
+
+**Twitter-Optimized Techniques:**
+- Identity Hijacking: "The founder who's tired of..." vs. "founders"
+- Power Words: Scarcity/Curiosity/Authority (max 2-3 per tweet for authenticity)
+- Quantum Entanglement (compressed): "The $3 trick that changed my business"
+- Pattern Breaks: "Dear failing startups: Stop trying to grow"
+- Identity Transformation: "How to become who you want to be"
+
+**Character constraints:** Genesis techniques must fit in 280 chars. Brevity is key on Twitter.
+
+**CRITICAL:** Only use if matches creator's documented Twitter voice (casual, not over-optimized).
+
 2. Outline the thread body: one core point per tweet
 3. Write body tweets with appropriate pacing variation
 4. Write the closing tweet matching the creator's closing patterns

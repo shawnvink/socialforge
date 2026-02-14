@@ -192,6 +192,33 @@ Generate 3-5 headline options:
 - Match the creator's typical headline length (word count and character count)
 - Include the target keyword if it fits naturally (following the creator's pattern)
 - Include power words only if the creator uses them, and only the ones they use
+
+### Advanced: Genesis Neuro-Linguistic Blog Headlines (IF CREATOR'S GENESIS SCORE >= 5)
+
+**Blog Context:** SEO + readability + click-through from search/social
+
+**Neurochemical Trigger Stack:**
+- Dopamine (reward): Promise of valuable insight/solution
+- Norepinephrine (attention): High-stakes or important topic
+- Curiosity Gap: "The thing nobody talks about..."
+- Search Intent Match: Must satisfy search query while being compelling
+
+**Blog-Optimized Techniques:**
+- Identity Hijacking: "For the Marketer Drowning in Analytics" (specific persona)
+- Quantum Entanglement: "The Janitor's SEO Secret That Outranks Fortune 500 Companies"
+- Curiosity Amplifiers: Secret, Hidden, Exposed, Revealed (SEO-friendly)
+- Numbers: "7 Ways..." "The 2026 Guide to..." (search-optimized)
+- Temporal: "The 2010 Strategy That Still Dominates Google in 2026"
+- Pattern Breaks: "Why I Stopped Following Google's SEO Guidelines"
+- Identity Transformation: "How to Become the Writer Google Rewards"
+
+**SEO Considerations:**
+- Keyword placement (natural, not forced)
+- Character limit: ~60 chars for Google SERP display
+- Click-through optimization vs. keyword stuffing
+
+**CRITICAL:** Must balance Genesis techniques with SEO requirements. Search intent first, optimization second, voice always.
+
 - Rank headlines by fit with the creator's patterns, noting which pattern each follows
 
 ### Step 4: Opening Construction

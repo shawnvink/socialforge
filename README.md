@@ -11,10 +11,11 @@ This is the social media counterpart to GhostForge (which does the same for book
 
 ### Two Components in This Repository:
 
-**1. Prompt Library (v1.0)** — 43 Professional Prompts
-- 3 core prompts + 40 platform-specific prompts (4 per platform × 10 platforms)
+**1. Prompt Library (v2.0)** — 47 Professional Prompts
+- 3 core prompts + 44 platform-specific prompts (4 per platform × 11 platforms)
 - Standalone system prompts for any LLM (Claude, GPT-4, etc.)
 - Self-contained with full SAP (Social Authenticity Protocol) enforcement
+- **NEW:** Genesis Neuro-Linguistic Headline Architecture integrated across all platforms
 - Each prompt is a complete .md file - copy and use directly
 
 **2. Dashboard (v2.0)** — Production-Ready HTML Tool
@@ -44,7 +45,7 @@ This is the social media counterpart to GhostForge (which does the same for book
 
 ## Architecture
 
-### 43 Total Prompts: 3 Core + 40 Platform-Specific
+### 47 Total Prompts: 3 Core + 44 Platform-Specific
 
 **Core Prompts** (shared across all platforms):
 
@@ -54,7 +55,7 @@ This is the social media counterpart to GhostForge (which does the same for book
 | C2 | Content Strategy Architect | `core/C2_content_strategy_architect.md` | Map topic clusters, content pillars, posting patterns, audience engagement patterns |
 | C3 | Cross-Platform Voice Harmonizer | `core/C3_cross_platform_harmonizer.md` | Compare platform profiles, identify fixed core vs. legitimate platform deltas, produce calibration rules |
 
-**Per-Platform Prompts** (4 per platform, 10 platforms):
+**Per-Platform Prompts** (4 per platform, 11 platforms):
 
 | # | Prompt | Purpose |
 |---|--------|---------|
@@ -65,7 +66,7 @@ This is the social media counterpart to GhostForge (which does the same for book
 
 ---
 
-## Supported Platforms (10)
+## Supported Platforms (11)
 
 | # | Platform | Folder | Content Formats |
 |---|----------|--------|-----------------|
@@ -74,11 +75,12 @@ This is the social media counterpart to GhostForge (which does the same for book
 | 3 | LinkedIn | `linkedin/` | Text posts, articles, newsletters, strategic comments, profile copy |
 | 4 | Twitter/X | `twitter/` | Single tweets, threads, quote tweets, replies |
 | 5 | TikTok | `tiktok/` | Short-form video scripts with hooks/timing, captions, series planning |
-| 6 | Newsletter | `newsletter/` | Full issues, subject lines, welcome sequences, CTAs |
-| 7 | Podcast | `podcast/` | Episode scripts (solo + interview), show notes, guest questions |
-| 8 | Blog/SEO | `blog/` | Full articles, meta descriptions, headlines, content briefs |
-| 9 | Threads | `threads/` | Posts, conversation chains |
-| 10 | Facebook | `facebook/` | Personal posts, page posts, group content, event descriptions |
+| 6 | Newsletter | `newsletter/` | Full issues, subject lines, welcome sequences, CTAs (educational/content-focused) |
+| 7 | **Email Copywriting** | `email-copywriting/` | **Sales emails, cold outreach, welcome sequences, cart abandonment, product launches (conversion-focused)** |
+| 8 | Podcast | `podcast/` | Episode scripts (solo + interview), show notes, guest questions |
+| 9 | Blog/SEO | `blog/` | Full articles, meta descriptions, headlines, content briefs |
+| 10 | Threads | `threads/` | Posts, conversation chains |
+| 11 | Facebook | `facebook/` | Personal posts, page posts, group content, event descriptions |
 
 ---
 
@@ -202,6 +204,89 @@ Every piece of generated content must pass all 5 (score 8+ each):
 **Target composite score: 8.5+**
 
 Full specification: `SAP_SPECIFICATION.md`
+
+---
+
+## 🧠 Genesis Neuro-Linguistic Headline Architecture (NEW in v2.0)
+
+**The science of creating headlines that hijack brain chemistry while maintaining voice authenticity.**
+
+Integrated across **all 11 platforms**, Genesis is a neurochemically-optimized headline framework that triggers specific brain chemicals in sequence to maximize engagement while sounding exactly like the creator.
+
+### The Neurochemical Trigger Stack
+
+Every optimized headline/title/subject line triggers four brain chemicals in this exact order:
+
+1. **Dopamine** (Reward Anticipation) → "I might get something valuable"
+2. **Norepinephrine** (Attention/Arousal) → "This could be important"
+3. **Cortisol** (Stress/Urgency) → "I need to act on this NOW"
+4. **Oxytocin** (Trust/Connection) → "This person gets me"
+
+**Example:** "The $3 Fix That Saved My Business (Before Friday's Deadline)"
+- Dopamine: "$3 Fix" = low-cost solution
+- Norepinephrine: "Saved My Business" = high stakes
+- Cortisol: "Before Friday's Deadline" = urgency
+- Oxytocin: "My Business" = personal, relatable
+
+### 8 Core Techniques
+
+| Technique | Description | Example |
+|-----------|-------------|---------|
+| **Identity Hijacking** | Hyper-specific identity markers (not generic) | "The founder drowning in meetings" vs. "entrepreneurs" |
+| **Credibility Osmosis** | Borrow authority from bigger entities | "The Apple Strategy Startups Are Using" |
+| **Quantum Entanglement** | [Familiar A] + [Unexpected] + [Valuable B] + [Constraint] | "The Janitor's Secret That Built a $10M Company" |
+| **Temporal Displacement** | Manipulate time perception | "The 1987 Strategy Crushing It in 2026" |
+| **Memetic Stickiness** | Cognitively sticky patterns | "The Missing Piece Every Successful Founder Has" |
+| **Pattern Breaks** | Unexpected reversals | "Dear Struggling Founders: Stop Trying to Grow" |
+| **Metacognitive Amplifiers** | Make reader aware of thinking | "The Thought That Separates $10M Founders from Broke Ones" |
+| **Identity Transformation** | Focus on becoming (not having) | "How to Become the Creator Everyone Wants to Follow" |
+
+### Power Word Categories
+
+Genesis tracks five categories of neurologically-optimized words:
+
+- **Scarcity Inducers:** Last, Final, Deadline, Closing, Ending, Gone
+- **Curiosity Amplifiers:** Secret, Hidden, Buried, Exposed, Revealed, Underground
+- **Authority Borrowers:** Insider, Executive, Expert, Professional, Elite, Master
+- **Tribal Identifiers:** Smart, Savvy, Successful, Elite, Advanced, Winning
+- **Exclusivity Markers:** Private, Exclusive, Members-Only, Inner Circle, VIP
+
+### Platform-Specific Adaptations
+
+Genesis techniques are adapted to each platform's context:
+
+- **YouTube:** 50-60 char titles optimized for CTR + thumbnail coordination
+- **Email Copywriting:** Subject lines for open rates (sales-focused, 25-30 chars)
+- **Newsletter:** Subject lines for intimacy (educational-focused, curiosity-driven)
+- **Blog:** Headlines balancing SEO + click-through (~60 chars for SERP)
+- **LinkedIn:** Professional tone, authority-building openers
+- **Twitter:** 280 char compression, instant impact hooks
+- **TikTok:** 1-3 second pattern interrupts, scroll-stopping hooks
+- **Instagram:** Visual-first hooks coordinated with imagery
+- **Podcast:** Audio app display (~60 chars), searchable titles
+- **Threads:** Conversational engagement starters (500 char limit)
+- **Facebook:** Personal, community-building openers
+
+### Voice-First Genesis: The Critical Safeguard
+
+**Genesis techniques are ONLY activated when appropriate for the creator's voice.**
+
+Every platform's P1 Analyzer assigns a **Genesis Usage Score (0-10)**:
+- **0-4:** Creator uses simple/casual headlines → Genesis disabled
+- **5-7:** Creator uses moderate optimization → Genesis techniques adapted
+- **8-10:** Creator is a headline master → Full Genesis activation
+
+**Golden Rule:** Voice authenticity ALWAYS takes priority over optimization. If a Genesis technique breaks voice, it's rejected.
+
+### What Makes This Different
+
+Most headline frameworks are one-size-fits-all. Genesis is:
+1. **Voice-Adaptive:** Techniques scale to creator's natural style
+2. **Neurochemically-Grounded:** Based on dopamine/norepinephrine/cortisol/oxytocin triggers
+3. **Platform-Contextualized:** Different tactics for YouTube vs. Email vs. LinkedIn
+4. **SAP-Compliant:** All techniques avoid AI detection and banned vocabulary
+
+**Result:** Headlines that convert like world-class copywriting while sounding exactly like the creator wrote them.
 
 ---
 

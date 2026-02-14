@@ -196,6 +196,28 @@ Generate a subject line that fits within the creator's model:
 - Match emoji usage (or absence)
 - Consider the preview text if the creator crafts them
 
+### Advanced: Genesis Neuro-Linguistic Subject Line (IF CREATOR'S GENESIS SCORE >= 5)
+
+**Newsletter Context:** Educational/relationship-building (NOT sales-focused like Email Copywriting)
+
+**Neurochemical Triggers (Educational Tone):**
+- Dopamine (reward): "valuable insight" vs. "$3 fix"
+- Norepinephrine (attention): "important topic" vs. "urgent deadline"
+- Curiosity Gap: "The thing nobody talks about..."
+- Trust Building: Personal, relatable, intimate
+
+**Newsletter-Appropriate Techniques:**
+- Identity Hijacking: "For the creator who's tired of..." (not generic)
+- Curiosity Amplifiers: Secret, Hidden, Revealed (softer than sales emails)
+- Pattern Breaks: "Dear readers: I was wrong about..."
+- Temporal: "What I learned in 2010 that still works in 2026"
+- Identity Transformation: "How to become the writer you want to be"
+
+**CRITICAL Difference from Sales Emails:**
+- Newsletter = Intimate, educational, relationship-focused
+- Sales Email = Conversion-focused, urgency-driven, action-oriented
+- Genesis techniques must be adapted for educational tone (softer, more curious, less pushy)
+
 **Think:** "The subject line determines whether the email gets opened. It must look like it belongs in the creator's subject line history."
 
 ## Step 9: Full Assembly and Voice Check

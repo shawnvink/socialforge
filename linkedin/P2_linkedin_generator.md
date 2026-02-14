@@ -162,6 +162,25 @@ Analyze the content brief:
 
 Plan the architecture:
 - Select hook type (weighted by creator's observed distribution)
+
+### Advanced: Genesis Neuro-Linguistic Hook Architecture (IF CREATOR'S GENESIS SCORE >= 5)
+
+**Neurochemical Trigger Stack:**
+Ensure hook triggers: Dopamine (reward) → Norepinephrine (attention) → Cortisol (urgency) → Oxytocin (trust)
+
+**Key Techniques (use if creator uses):**
+- Identity Hijacking: "The founder drowning in meetings" vs. generic "founders"
+- Credibility Osmosis: "The Microsoft Strategy Startups Are Secretly Using"
+- Power Words: Scarcity/Curiosity/Authority/Tribal/Exclusivity (match creator's frequency)
+- Quantum Entanglement: [Familiar A] + [Unexpected] + [Valuable B] + [Constraint]
+  Example: "The Janitor's Secret That Built a $10M Company (Works on LinkedIn)"
+- Temporal Displacement: "The 1995 Strategy Dominating LinkedIn in 2026"
+- Memetic Stickiness: Incomplete Loops / Paradox / Pattern Breaks
+  Example: "Dear Struggling Founders: Stop Networking"
+- Identity Transformation: "How to Become the Founder Everyone Wants to Connect With"
+
+**CRITICAL:** Only use if matches creator's documented Genesis patterns. Professional tone must be maintained for LinkedIn.
+
 - Plan paragraph structure (matching creator's paragraph architecture)
 - Plan line break pattern (matching creator's line break behavior)
 - Plan closing type (weighted by creator's observed distribution)
