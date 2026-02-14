@@ -9,16 +9,23 @@ SocialForge is a complete system for creating AI-powered social media content th
 
 This is the social media counterpart to GhostForge (which does the same for book-length manuscripts).
 
-### Two Components in This Repository:
+### Three Components in This Repository:
 
-**1. Prompt Library (v2.0)** — 47 Professional Prompts
+**1. SocialForge App (v3.0)** — Full-Stack Next.js Application
+- Complete P1→P4 pipeline with streaming, auto-refinement loop, and real-time cost tracking
+- 11 platforms, Convex database, prompt caching (90% savings), multi-provider (Anthropic + OpenRouter)
+- Cross-platform voice adaptation — use any profile on any platform
+- Content library with kanban board (Draft → Review → Approved → Published)
+- **[See socialforge-app/README.md for setup, start/stop, and update instructions](socialforge-app/README.md)**
+
+**2. Prompt Library (v2.0)** — 47 Professional Prompts
 - 3 core prompts + 44 platform-specific prompts (4 per platform × 11 platforms)
 - Standalone system prompts for any LLM (Claude, GPT-4, etc.)
 - Self-contained with full SAP (Social Authenticity Protocol) enforcement
 - **NEW:** Genesis Neuro-Linguistic Headline Architecture integrated across all platforms
 - Each prompt is a complete .md file - copy and use directly
 
-**2. Dashboard (v2.0)** — Production-Ready HTML Tool
+**3. Dashboard (v2.0)** — Production-Ready HTML Tool
 - Single-file HTML application (`dashboard-final.html`)
 - Automated P1→P2→P3→P4 workflow
 - Real voice analysis (20+ metrics, zero fake data)
@@ -30,12 +37,18 @@ This is the social media counterpart to GhostForge (which does the same for book
 
 ## Quick Start
 
-**Option A: Use the Dashboard (Recommended)**
+**Option A: Use the App (Recommended)**
+1. `cd socialforge-app && npm install`
+2. `npx convex dev` (Terminal 1) + `npm run dev` (Terminal 2)
+3. Open http://localhost:3000 — full automated pipeline with database, streaming, and refinement loop
+4. See [socialforge-app/README.md](socialforge-app/README.md) for complete setup instructions
+
+**Option B: Use the HTML Dashboard**
 1. Open `dashboard-final.html` in your browser
 2. Follow the P1→P2→P3→P4 workflow
 3. Get production-ready content with validation
 
-**Option B: Use Prompts Directly**
+**Option C: Use Prompts Directly**
 1. Navigate to platform folder (e.g., `instagram/`)
 2. Copy prompt file (e.g., `P2_instagram_generator.md`)
 3. Paste into Claude or GPT-4
@@ -316,6 +329,7 @@ This is adapted from GhostForge's 12-section architecture. Sections 11 (Cross-Mo
 ```
 socialforge/
 ├── README.md                           ← You are here
+├── socialforge-app/                    ← Full-stack Next.js app (see its README)
 ├── VOICE_BIBLE_SPECIFICATION.md        ← 12+6 dimension voice system spec
 ├── SAP_SPECIFICATION.md                ← Social Authenticity Protocol spec
 ├── core/
@@ -502,4 +516,11 @@ Each platform's prompts are written by specialists who understand that platform'
 - Status: Production-ready, zero fake data
 - Documentation: See [DASHBOARD_README.md](DASHBOARD_README.md)
 
-**Last Updated:** February 13, 2026
+**SocialForge App (v3.0)**
+- System: Full-stack Next.js + Convex application
+- Tech: Next.js 16, React 19, TypeScript 5.9, Convex, Tailwind CSS 4
+- Released: February 14, 2026
+- Features: Streaming P1-P4 pipeline, auto-refinement, cross-platform voice adaptation, prompt caching, content library with kanban
+- Documentation: See [socialforge-app/README.md](socialforge-app/README.md)
+
+**Last Updated:** February 14, 2026
