@@ -30,7 +30,7 @@ export const create = mutation({
     platform: v.string(),
     voiceBible: v.optional(v.string()),
     expressionProfile: v.string(),
-    genesisScore: v.number(),
+    helixScore: v.number(),
     modelUsed: v.string(),
     provider: v.string(),
   },

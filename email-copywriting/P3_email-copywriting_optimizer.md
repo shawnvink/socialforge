@@ -202,9 +202,9 @@ Plan variants that test specific hypotheses:
 
 **Think:** "What can we test that will give us learning while maintaining voice authenticity?"
 
-## Step 5: Advanced Subject Line Optimization (Genesis Framework)
+## Step 5: Advanced Subject Line Optimization (Helix Framework)
 
-**ONLY USE IF CREATOR'S VOICE ALLOWS AND GENESIS USAGE SCORE >= 5**
+**ONLY USE IF CREATOR'S VOICE ALLOWS AND HELIX USAGE SCORE >= 5**
 
 If the Email Expression Profile shows the creator uses neuro-linguistic techniques, apply these optimizations:
 
@@ -294,7 +294,7 @@ Shift from having to becoming:
 - Before: "Get more customers"
 - After: "Become the Founder Everyone Wishes They Were"
 
-**CRITICAL:** Every Genesis optimization must pass voice authenticity test. If technique breaks creator's voice, reject it.
+**CRITICAL:** Every Helix optimization must pass voice authenticity test. If technique breaks creator's voice, reject it.
 
 ---
 

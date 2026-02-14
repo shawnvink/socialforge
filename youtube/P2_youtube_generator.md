@@ -215,7 +215,7 @@ ACTION: Generate:
 - Thumbnail concept description matching their visual patterns
 ```
 
-### Advanced: Genesis Neuro-Linguistic Title Architecture
+### Advanced: Helix Neuro-Linguistic Title Architecture
 
 **ONLY USE IF CREATOR'S VOICE ALLOWS.** Apply neurochemically optimized title principles:
 

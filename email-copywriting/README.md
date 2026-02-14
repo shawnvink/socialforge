@@ -46,7 +46,7 @@ Generates sales emails that:
 - Email sequence patterns (welcome, nurture, sales, cart abandonment)
 - Subject line conversion model
 - Spam-safe vocabulary
-- **Genesis Usage Score (0-10)** for neuro-linguistic headline optimization
+- **Helix Usage Score (0-10)** for neuro-linguistic headline optimization
 
 **Output:** Email Expression Profile with 10 comprehensive sections
 
@@ -59,7 +59,7 @@ Generates sales emails that:
 - Legendary copywriter techniques (Gary Halbert's SSS, Dan Kennedy's urgency)
 - 6 email types: cold outreach, welcome, nurture, sales, cart abandonment, product launch
 - Conversion frameworks matched to email type
-- Genesis Neuro-Linguistic subject lines (if creator's voice allows)
+- Helix Neuro-Linguistic subject lines (if creator's voice allows)
 - 2026 best practices (personalization, single CTA, conversational tone)
 
 **Includes 5 detailed few-shot examples:**
@@ -87,7 +87,7 @@ Generates sales emails that:
 
 **Includes:**
 - A/B test variant generation (subject lines, CTAs, frameworks)
-- Genesis headline optimization (if Genesis Score >= 5)
+- Helix headline optimization (if Helix Score >= 5)
 - Voice preservation during optimization (never sacrifices authenticity for conversion)
 
 **Critical Rule:** Optimization cannot break voice. Voice authenticity > conversion gains.
@@ -198,9 +198,9 @@ Proper escalation through sequences:
 
 ---
 
-## Genesis Neuro-Linguistic Subject Lines
+## Helix Neuro-Linguistic Subject Lines
 
-When Email Expression Profile shows Genesis Usage Score >= 5, subject lines can leverage:
+When Email Expression Profile shows Helix Usage Score >= 5, subject lines can leverage:
 
 **Neurochemical Trigger Stack:**
 1. Dopamine (reward): "$3 fix", "simple solution"
@@ -311,4 +311,4 @@ Output: Pass/Fail validation report with specific scores
 ---
 
 **Part of SocialForge v2.0** — AI Social Media Voice Cloning System
-**With Genesis Neuro-Linguistic Headline Architecture**
+**With Helix Neuro-Linguistic Headline Architecture**

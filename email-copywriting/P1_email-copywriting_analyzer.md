@@ -260,7 +260,7 @@ Analyze subject lines specifically for open rate optimization:
 - Safe urgency language documented
 - Safe benefit language documented
 
-### Advanced: Genesis Neuro-Linguistic Analysis
+### Advanced: Helix Neuro-Linguistic Analysis
 
 **Analyze if creator uses neuro-linguistic headline techniques:**
 
@@ -321,7 +321,7 @@ Examples: "This Subject Line Is Designed to Get Opened (It's Working)"
 X% focus on becoming (not having)
 Examples: "How to Become the Founder Everyone Wishes They Were"
 
-**Genesis Usage Score:** [0-10]
+**Helix Usage Score:** [0-10]
 0 = Never uses neuro-linguistic techniques
 5 = Uses some power words and curiosity gaps
 10 = Master-level neuro-linguistic headline architect

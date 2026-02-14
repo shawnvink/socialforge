@@ -169,9 +169,9 @@ Before writing prose:
 1. Map the episode structure (matching the profile's typical architecture)
 2. Determine segment count and approximate length per segment
 
-ADVANCED: Genesis Neuro-Linguistic Episode Title (IF CREATOR'S GENESIS SCORE >= 5)
+ADVANCED: Helix Neuro-Linguistic Episode Title (IF CREATOR'S HELIX SCORE >= 5)
 
-Generate 2-3 title options using Genesis principles:
+Generate 2-3 title options using Helix principles:
 - Neurochemical Stack: Dopamine (valuable insight) → Norepinephrine (important) → Curiosity
 - Identity Hijacking: "For the entrepreneur tired of..." vs. generic "entrepreneurs"
 - Quantum Entanglement: [Familiar A] + [Unexpected] + [Valuable B]

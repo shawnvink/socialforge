@@ -22,7 +22,7 @@ This is the social media counterpart to GhostForge (which does the same for book
 - 3 core prompts + 44 platform-specific prompts (4 per platform × 11 platforms)
 - Standalone system prompts for any LLM (Claude, GPT-4, etc.)
 - Self-contained with full SAP (Social Authenticity Protocol) enforcement
-- **NEW:** Genesis Neuro-Linguistic Headline Architecture integrated across all platforms
+- **NEW:** Helix Neuro-Linguistic Headline Architecture integrated across all platforms
 - Each prompt is a complete .md file - copy and use directly
 
 **3. Dashboard (v2.0)** — Production-Ready HTML Tool
@@ -220,11 +220,11 @@ Full specification: `SAP_SPECIFICATION.md`
 
 ---
 
-## 🧠 Genesis Neuro-Linguistic Headline Architecture (NEW in v2.0)
+## 🧠 Helix Neuro-Linguistic Headline Architecture (NEW in v2.0)
 
 **The science of creating headlines that hijack brain chemistry while maintaining voice authenticity.**
 
-Integrated across **all 11 platforms**, Genesis is a neurochemically-optimized headline framework that triggers specific brain chemicals in sequence to maximize engagement while sounding exactly like the creator.
+Integrated across **all 11 platforms**, Helix is a neurochemically-optimized headline framework that triggers specific brain chemicals in sequence to maximize engagement while sounding exactly like the creator.
 
 ### The Neurochemical Trigger Stack
 
@@ -256,7 +256,7 @@ Every optimized headline/title/subject line triggers four brain chemicals in thi
 
 ### Power Word Categories
 
-Genesis tracks five categories of neurologically-optimized words:
+Helix tracks five categories of neurologically-optimized words:
 
 - **Scarcity Inducers:** Last, Final, Deadline, Closing, Ending, Gone
 - **Curiosity Amplifiers:** Secret, Hidden, Buried, Exposed, Revealed, Underground
@@ -266,7 +266,7 @@ Genesis tracks five categories of neurologically-optimized words:
 
 ### Platform-Specific Adaptations
 
-Genesis techniques are adapted to each platform's context:
+Helix techniques are adapted to each platform's context:
 
 - **YouTube:** 50-60 char titles optimized for CTR + thumbnail coordination
 - **Email Copywriting:** Subject lines for open rates (sales-focused, 25-30 chars)
@@ -280,20 +280,20 @@ Genesis techniques are adapted to each platform's context:
 - **Threads:** Conversational engagement starters (500 char limit)
 - **Facebook:** Personal, community-building openers
 
-### Voice-First Genesis: The Critical Safeguard
+### Voice-First Helix: The Critical Safeguard
 
-**Genesis techniques are ONLY activated when appropriate for the creator's voice.**
+**Helix techniques are ONLY activated when appropriate for the creator's voice.**
 
-Every platform's P1 Analyzer assigns a **Genesis Usage Score (0-10)**:
-- **0-4:** Creator uses simple/casual headlines → Genesis disabled
-- **5-7:** Creator uses moderate optimization → Genesis techniques adapted
-- **8-10:** Creator is a headline master → Full Genesis activation
+Every platform's P1 Analyzer assigns a **Helix Usage Score (0-10)**:
+- **0-4:** Creator uses simple/casual headlines → Helix disabled
+- **5-7:** Creator uses moderate optimization → Helix techniques adapted
+- **8-10:** Creator is a headline master → Full Helix activation
 
-**Golden Rule:** Voice authenticity ALWAYS takes priority over optimization. If a Genesis technique breaks voice, it's rejected.
+**Golden Rule:** Voice authenticity ALWAYS takes priority over optimization. If a Helix technique breaks voice, it's rejected.
 
 ### What Makes This Different
 
-Most headline frameworks are one-size-fits-all. Genesis is:
+Most headline frameworks are one-size-fits-all. Helix is:
 1. **Voice-Adaptive:** Techniques scale to creator's natural style
 2. **Neurochemically-Grounded:** Based on dopamine/norepinephrine/cortisol/oxytocin triggers
 3. **Platform-Contextualized:** Different tactics for YouTube vs. Email vs. LinkedIn

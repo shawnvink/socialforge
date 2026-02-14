@@ -193,7 +193,7 @@ Generate 3-5 headline options:
 - Include the target keyword if it fits naturally (following the creator's pattern)
 - Include power words only if the creator uses them, and only the ones they use
 
-### Advanced: Genesis Neuro-Linguistic Blog Headlines (IF CREATOR'S GENESIS SCORE >= 5)
+### Advanced: Helix Neuro-Linguistic Blog Headlines (IF CREATOR'S HELIX SCORE >= 5)
 
 **Blog Context:** SEO + readability + click-through from search/social
 
@@ -217,7 +217,7 @@ Generate 3-5 headline options:
 - Character limit: ~60 chars for Google SERP display
 - Click-through optimization vs. keyword stuffing
 
-**CRITICAL:** Must balance Genesis techniques with SEO requirements. Search intent first, optimization second, voice always.
+**CRITICAL:** Must balance Helix techniques with SEO requirements. Search intent first, optimization second, voice always.
 
 - Rank headlines by fit with the creator's patterns, noting which pattern each follows
 

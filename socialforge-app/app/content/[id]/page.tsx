@@ -163,7 +163,7 @@ export default function ContentDetailPage({
             className="mt-4 inline-flex items-center gap-2 rounded-xl bg-muted/50 px-4 py-2 text-[13px] text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
           >
             <User className="h-3.5 w-3.5" />
-            Profile: {profile.creatorName} (Genesis: {profile.genesisScore}/10)
+            Profile: {profile.creatorName} (Helix: {profile.helixScore}/10)
           </Link>
         )}
       </div>

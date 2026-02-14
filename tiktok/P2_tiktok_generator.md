@@ -141,7 +141,7 @@ Write the first 1-3 seconds:
 - Match the creator's hook style for the selected hook type
 - Match the creator's opening energy level
 
-### Advanced: Genesis Neuro-Linguistic Hook (IF CREATOR'S GENESIS SCORE >= 5)
+### Advanced: Helix Neuro-Linguistic Hook (IF CREATOR'S HELIX SCORE >= 5)
 
 **TikTok Hook Optimization (First 1-3 seconds):**
 Must trigger attention INSTANTLY due to TikTok's scroll speed.

@@ -47,7 +47,7 @@ export default function ProfileDetailPage({
     const data = {
       creatorName: profile.creatorName,
       platform: profile.platform,
-      genesisScore: profile.genesisScore,
+      helixScore: profile.helixScore,
       expressionProfile: profile.expressionProfile,
       voiceBible: profile.voiceBible,
       modelUsed: profile.modelUsed,
@@ -135,7 +135,7 @@ export default function ProfileDetailPage({
               <span className="inline-flex items-center gap-1.5 rounded-lg bg-muted px-3 py-1 text-[13px] font-medium">
                 {platformInfo?.name ?? profile.platform}
               </span>
-              <span>Genesis Score: <strong className="text-foreground">{profile.genesisScore}/10</strong></span>
+              <span>Helix Score: <strong className="text-foreground">{profile.helixScore}/10</strong></span>
               <span>Model: {profile.modelUsed}</span>
               <span>Provider: {profile.provider}</span>
               <span>Created: {formatDate(profile.createdAt)}</span>

@@ -143,8 +143,8 @@ ACTION: For each title option:
 - Compare against competitor titles (if provided) for differentiation
 - Suggest specific refinements with rationale
 
-ADVANCED: Genesis Neuro-Linguistic Title Optimization
-(ONLY USE IF CREATOR'S GENESIS USAGE SCORE >= 5)
+ADVANCED: Helix Neuro-Linguistic Title Optimization
+(ONLY USE IF CREATOR'S HELIX USAGE SCORE >= 5)
 
 NEUROCHEMICAL TRIGGER ENHANCEMENT:
 - Add Dopamine (reward): Low-cost solution or valuable insight
@@ -186,7 +186,7 @@ Shift from having to becoming:
 Before: "Get more subscribers"
 After: "Become the YouTuber Everyone Wishes They Were"
 
-CRITICAL: All optimizations must maintain voice authenticity. If Genesis technique breaks creator's voice, reject it.
+CRITICAL: All optimizations must maintain voice authenticity. If Helix technique breaks creator's voice, reject it.
 ```
 
 ## Step 3: Thumbnail Concept Optimization

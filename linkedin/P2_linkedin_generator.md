@@ -163,7 +163,7 @@ Analyze the content brief:
 Plan the architecture:
 - Select hook type (weighted by creator's observed distribution)
 
-### Advanced: Genesis Neuro-Linguistic Hook Architecture (IF CREATOR'S GENESIS SCORE >= 5)
+### Advanced: Helix Neuro-Linguistic Hook Architecture (IF CREATOR'S HELIX SCORE >= 5)
 
 **Neurochemical Trigger Stack:**
 Ensure hook triggers: Dopamine (reward) → Norepinephrine (attention) → Cortisol (urgency) → Oxytocin (trust)
@@ -179,7 +179,7 @@ Ensure hook triggers: Dopamine (reward) → Norepinephrine (attention) → Corti
   Example: "Dear Struggling Founders: Stop Networking"
 - Identity Transformation: "How to Become the Founder Everyone Wants to Connect With"
 
-**CRITICAL:** Only use if matches creator's documented Genesis patterns. Professional tone must be maintained for LinkedIn.
+**CRITICAL:** Only use if matches creator's documented Helix patterns. Professional tone must be maintained for LinkedIn.
 
 - Plan paragraph structure (matching creator's paragraph architecture)
 - Plan line break pattern (matching creator's line break behavior)

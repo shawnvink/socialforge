@@ -108,7 +108,7 @@ export default function ProfilesPage() {
                     <p className="text-[15px] font-medium">{profile.creatorName}</p>
                     <div className="mt-0.5 flex items-center gap-3 text-[13px] text-muted-foreground">
                       <span>{platformInfo?.name}</span>
-                      <span>Genesis: {profile.genesisScore}/10</span>
+                      <span>Helix: {profile.helixScore}/10</span>
                       <span>{formatDate(profile.createdAt)}</span>
                     </div>
                   </div>

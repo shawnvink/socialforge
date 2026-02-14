@@ -19,10 +19,10 @@ const STEPS: { id: Step; label: string; tag: string; description: string }[] = [
   { id: "validate", tag: "P4", label: "Validate", description: "Score authenticity" },
 ];
 
-function parseGenesisScore(text: string): number {
-  // Try to extract a genesis/authenticity score from the expression profile
+function parseHelixScore(text: string): number {
+  // Try to extract a helix/authenticity score from the expression profile
   const patterns = [
-    /genesis\s*score[:\s]*(\d+(?:\.\d+)?)/i,
+    /helix\s*score[:\s]*(\d+(?:\.\d+)?)/i,
     /authenticity\s*score[:\s]*(\d+(?:\.\d+)?)/i,
     /overall\s*score[:\s]*(\d+(?:\.\d+)?)/i,
     /score[:\s]*(\d+(?:\.\d+)?)\s*\/\s*10/i,
@@ -288,13 +288,13 @@ function GenerateContent() {
 
       // Persist to Convex after stream completes
       if (currentStep === "analyze") {
-        const genesisScore = parseGenesisScore(fullContent);
+        const helixScore = parseHelixScore(fullContent);
         const profileId = await createProfile({
           creatorName,
           platform,
           voiceBible: voiceBible || undefined,
           expressionProfile: fullContent,
-          genesisScore,
+          helixScore,
           modelUsed: model,
           provider,
         });
@@ -676,7 +676,7 @@ function GenerateContent() {
                       <optgroup label="Same Platform">
                         {samePlatformProfiles.map((p) => (
                           <option key={p._id} value={p._id}>
-                            {p.creatorName} — Genesis: {p.genesisScore}/10
+                            {p.creatorName} — Helix: {p.helixScore}/10
                           </option>
                         ))}
                       </optgroup>
@@ -685,7 +685,7 @@ function GenerateContent() {
                       <optgroup label="Cross-Platform (Will Adapt)">
                         {crossPlatformProfiles.map((p) => (
                           <option key={p._id} value={p._id}>
-                            {p.creatorName} ({getPlatformName(p.platform)}) — Genesis: {p.genesisScore}/10
+                            {p.creatorName} ({getPlatformName(p.platform)}) — Helix: {p.helixScore}/10
                           </option>
                         ))}
                       </optgroup>

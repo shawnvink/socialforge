@@ -132,7 +132,7 @@ Based on the content type requested:
 **Single Post (up to 500 characters):**
 - Select an opening pattern from the creator's documented repertoire
 
-### Advanced: Genesis Neuro-Linguistic Threads Opener (IF CREATOR'S GENESIS SCORE >= 5)
+### Advanced: Helix Neuro-Linguistic Threads Opener (IF CREATOR'S HELIX SCORE >= 5)
 
 **Threads Context:** Conversational, Twitter-like, but longer form (500 chars vs 280)
 
@@ -151,7 +151,7 @@ Based on the content type requested:
 
 **Character Constraint:** 500 chars total. First 1-2 sentences are critical.
 
-**CRITICAL:** Threads is conversational. Genesis must feel natural, not over-optimized. Voice authenticity > optimization.
+**CRITICAL:** Threads is conversational. Helix must feel natural, not over-optimized. Voice authenticity > optimization.
 
 - Structure the body using the creator's observed formatting style
 - Close using the creator's documented closing patterns

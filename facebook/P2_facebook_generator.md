@@ -392,7 +392,7 @@ Sarah you know me too well. I'm nothing without my first cup of coffee and ten m
 
 1. Write the opening using a hook type that differs from the last generated post
 
-### Advanced: Genesis Neuro-Linguistic Facebook Hook (IF CREATOR'S GENESIS SCORE >= 5)
+### Advanced: Helix Neuro-Linguistic Facebook Hook (IF CREATOR'S HELIX SCORE >= 5)
 
 **Facebook Context:** Personal platform, friend/family vibe, longer posts acceptable
 
@@ -404,7 +404,7 @@ Sarah you know me too well. I'm nothing without my first cup of coffee and ten m
 
 **Facebook-Optimized Techniques:**
 - Identity Hijacking: "For the parent who's exhausted..." (specific, relatable)
-- Personal Story Hook: Genesis works well with personal narratives on Facebook
+- Personal Story Hook: Helix works well with personal narratives on Facebook
 - Pattern Break: "Unpopular opinion..." (if creator uses)
 - Community Building: "Anyone else feel this way?" (engagement-focused)
 - Curiosity Gaps: "The thing I wish I'd known..."
@@ -417,7 +417,7 @@ Sarah you know me too well. I'm nothing without my first cup of coffee and ten m
 - Emoji usage often higher than other platforms
 - Engagement hooks (questions, polls) encouraged
 
-**CRITICAL:** Facebook is the most personal platform. Genesis techniques must feel authentic, not salesy. Community-building > optimization.
+**CRITICAL:** Facebook is the most personal platform. Helix techniques must feel authentic, not salesy. Community-building > optimization.
 
 2. Develop the body following the creator's structural patterns for this content type
 3. Apply vocabulary from the creator's documented range (no banned words)

@@ -418,7 +418,7 @@ For each variation:
 For threads:
 1. Write the hook tweet first. It must work standalone.
 
-### Advanced: Genesis Neuro-Linguistic Hook Tweet (IF CREATOR'S GENESIS SCORE >= 5)
+### Advanced: Helix Neuro-Linguistic Hook Tweet (IF CREATOR'S HELIX SCORE >= 5)
 
 **Neurochemical Stack in 280 characters:**
 Dopamine (reward) → Norepinephrine (attention) → Cortisol (urgency) → Oxytocin (trust)
@@ -430,7 +430,7 @@ Dopamine (reward) → Norepinephrine (attention) → Cortisol (urgency) → Oxyt
 - Pattern Breaks: "Dear failing startups: Stop trying to grow"
 - Identity Transformation: "How to become who you want to be"
 
-**Character constraints:** Genesis techniques must fit in 280 chars. Brevity is key on Twitter.
+**Character constraints:** Helix techniques must fit in 280 chars. Brevity is key on Twitter.
 
 **CRITICAL:** Only use if matches creator's documented Twitter voice (casual, not over-optimized).
 

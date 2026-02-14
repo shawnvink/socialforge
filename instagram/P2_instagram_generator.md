@@ -163,7 +163,7 @@ REASONING:
   - Check RECENT_POSTS: do not repeat the same hook type as the most recent post
   - Check BATCH_CONTEXT: do not repeat hook types within the batch
 
-ADVANCED: Genesis Neuro-Linguistic Hook Optimization (IF CREATOR'S GENESIS SCORE >= 5)
+ADVANCED: Helix Neuro-Linguistic Hook Optimization (IF CREATOR'S HELIX SCORE >= 5)
 - Neurochemical Stack: Ensure hook triggers Dopamine (reward) → Norepinephrine (attention) → Cortisol (urgency) → Oxytocin (trust)
   Example: "The $3 Fix That Saved My Account (Try This Today)" hits all four
 - Identity Hijacking: Use hyper-specific identity marker vs. generic
@@ -174,7 +174,7 @@ ADVANCED: Genesis Neuro-Linguistic Hook Optimization (IF CREATOR'S GENESIS SCORE
 - Pattern Breaks: "Dear Struggling Creators: Stop Trying to Go Viral"
 - Identity Transformation: Focus on becoming not having
   Not "Get more followers" → "Become the Creator Everyone Wants to Follow"
-CRITICAL: Only use if matches creator's documented Genesis patterns
+CRITICAL: Only use if matches creator's documented Helix patterns
 
 - Select a closing type from the creator's documented distribution
 - Determine target word count: pick a specific number within the creator's range (mean +/- 1.5 SD)

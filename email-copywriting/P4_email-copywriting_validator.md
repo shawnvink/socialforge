@@ -144,9 +144,9 @@ Scan for 2026 spam filter triggers:
 - Misleading clickbait: Does subject match email content?
 - Length: [X chars] (Flag if > 60 chars, reduces mobile open rate)
 
-### Advanced: Genesis Neuro-Linguistic Validation
+### Advanced: Helix Neuro-Linguistic Validation
 
-**ONLY VALIDATE IF CREATOR'S GENESIS USAGE SCORE >= 5**
+**ONLY VALIDATE IF CREATOR'S HELIX USAGE SCORE >= 5**
 
 If Email Expression Profile shows creator uses neuro-linguistic techniques, validate:
 
@@ -199,15 +199,15 @@ Does subject line match creator's dominant frequency?
 **Identity Transformation Focus:**
 ✓/✗ Focuses on becoming (not having)
 
-**Genesis Validation Score:** [0-10]
+**Helix Validation Score:** [0-10]
 - 0-3: Fails to use creator's neuro-linguistic patterns
 - 4-6: Partial use, missing key elements
 - 7-8: Good use, matches most patterns
 - 9-10: Master-level execution, perfect match
 
-**Pass Threshold:** Must match creator's Genesis Usage Score +/- 2 points
+**Pass Threshold:** Must match creator's Helix Usage Score +/- 2 points
 
-**Critical Rule:** If creator's Genesis Score is 8+ but email's Genesis Score is 3, this is a voice mismatch failure even if other tests pass.
+**Critical Rule:** If creator's Helix Score is 8+ but email's Helix Score is 3, this is a voice mismatch failure even if other tests pass.
 
 **Body Check:**
 - ALL CAPS sentences: [Flag if present unless creator uses]

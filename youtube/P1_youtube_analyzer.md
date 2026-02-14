@@ -184,7 +184,7 @@ ACTION: Map all title patterns:
 - Clickbait calibration (1-10 scale: 1 = purely informational, 10 = extreme bait)
 - Number usage (lists, stats, years, money amounts)
 
-ADVANCED ANALYSIS: Genesis Neuro-Linguistic Title Architecture
+ADVANCED ANALYSIS: Helix Neuro-Linguistic Title Architecture
 
 Analyze if creator uses neuro-linguistic headline techniques:
 
@@ -239,7 +239,7 @@ IDENTITY TRANSFORMATION:
 X% focus on becoming (not having)
 Examples: "[Actual titles]"
 
-GENESIS USAGE SCORE: [0-10]
+HELIX USAGE SCORE: [0-10]
 0 = Never uses neuro-linguistic techniques
 5 = Uses some power words and curiosity gaps
 10 = Master-level neuro-linguistic title architect

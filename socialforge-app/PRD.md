@@ -91,7 +91,7 @@ socialforge-app/
 - platform: string (youtube | instagram | linkedin | twitter | tiktok | newsletter | podcast | blog | threads | facebook | email-copywriting)
 - voiceBible: string (raw text of voice bible)
 - expressionProfile: string (JSON - the P1 output)
-- genesisScore: number (0-10)
+- helixScore: number (0-10)
 - modelUsed: string (e.g. "claude-sonnet-4-5" or "openai/gpt-4")
 - provider: string ("anthropic" | "openrouter")
 - createdAt: number
@@ -221,7 +221,7 @@ interface LLMProvider {
 7. App sends to LLM (Anthropic or OpenRouter based on settings)
 8. App receives Expression Profile response
 9. App parses and stores profile in Convex
-10. App displays profile summary with Genesis Score
+10. App displays profile summary with Helix Score
 
 **Technical Flow:**
 ```
@@ -294,13 +294,13 @@ Parse response -> Store in Convex -> Display profile
 ### Page 3: Voice Profiles (/profiles)
 - List of all created profiles
 - Filter by platform
-- Each card shows: creator name, platform, Genesis Score, date
+- Each card shows: creator name, platform, Helix Score, date
 - Click to view full Expression Profile
 - Delete / re-analyze options
 
 ### Page 4: Profile Detail (/profiles/[id])
 - Full Expression Profile display (formatted JSON)
-- Genesis Score visualization
+- Helix Score visualization
 - Associated content list
 - "Generate Content" button (goes to P2 with this profile)
 - Re-analyze option

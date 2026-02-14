@@ -196,7 +196,7 @@ Generate a subject line that fits within the creator's model:
 - Match emoji usage (or absence)
 - Consider the preview text if the creator crafts them
 
-### Advanced: Genesis Neuro-Linguistic Subject Line (IF CREATOR'S GENESIS SCORE >= 5)
+### Advanced: Helix Neuro-Linguistic Subject Line (IF CREATOR'S HELIX SCORE >= 5)
 
 **Newsletter Context:** Educational/relationship-building (NOT sales-focused like Email Copywriting)
 
@@ -216,7 +216,7 @@ Generate a subject line that fits within the creator's model:
 **CRITICAL Difference from Sales Emails:**
 - Newsletter = Intimate, educational, relationship-focused
 - Sales Email = Conversion-focused, urgency-driven, action-oriented
-- Genesis techniques must be adapted for educational tone (softer, more curious, less pushy)
+- Helix techniques must be adapted for educational tone (softer, more curious, less pushy)
 
 **Think:** "The subject line determines whether the email gets opened. It must look like it belongs in the creator's subject line history."
 

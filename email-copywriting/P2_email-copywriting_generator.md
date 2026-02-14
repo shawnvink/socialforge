@@ -185,7 +185,7 @@ Based on Email Expression Profile's subject line conversion model:
 - No spam trigger words (Free, $$$, Act Now, etc.)
 - No multiple exclamation points (unless creator uses)
 
-### Advanced: Genesis Neuro-Linguistic Headline Architecture
+### Advanced: Helix Neuro-Linguistic Headline Architecture
 
 **ONLY USE IF CREATOR'S VOICE ALLOWS.** This framework creates neurochemically optimized subject lines that trigger brain chemistry in sequence.
 

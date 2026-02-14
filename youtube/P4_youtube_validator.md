@@ -76,8 +76,8 @@ Compare the thumbnail concept against documented thumbnail patterns. Check all v
 
 Scoring: Binary pass/fail for each element. Target: all elements pass.
 
-### Advanced Test 4.5: Genesis Neuro-Linguistic Title Validation
-(ONLY VALIDATE IF CREATOR'S GENESIS USAGE SCORE >= 5)
+### Advanced Test 4.5: Helix Neuro-Linguistic Title Validation
+(ONLY VALIDATE IF CREATOR'S HELIX USAGE SCORE >= 5)
 
 If YouTube Expression Profile shows creator uses neuro-linguistic techniques, validate:
 
@@ -114,8 +114,8 @@ Match: ✓/✗
 **Identity Transformation:**
 ✓/✗ Focuses on becoming (not having)
 
-**Genesis Validation Score:** [0-10]
-Pass Threshold: Must match creator's Genesis Usage Score +/- 2 points
+**Helix Validation Score:** [0-10]
+Pass Threshold: Must match creator's Helix Usage Score +/- 2 points
 
 ### Test 5: The Format Consistency Test
 Verify that the generated content follows the structural patterns documented for the specific format (long-form, Short, community post):
