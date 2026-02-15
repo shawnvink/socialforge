@@ -47,6 +47,15 @@ export default defineSchema({
     updatedAt: v.number(),
   }),
 
+  research: defineTable({
+    profileId: v.optional(v.id("profiles")),
+    query: v.optional(v.string()),
+    sources: v.string(), // JSON array of { title, url, text }
+    createdAt: v.number(),
+  })
+    .index("by_profile", ["profileId"])
+    .index("by_date", ["createdAt"]),
+
   usage: defineTable({
     contentId: v.optional(v.id("content")),
     profileId: v.optional(v.id("profiles")),

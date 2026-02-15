@@ -7,7 +7,7 @@ import { api } from "@/convex/_generated/api";
 import { Id } from "@/convex/_generated/dataModel";
 import { PLATFORMS, ANTHROPIC_MODELS, OPENROUTER_MODELS } from "@/lib/llm/models";
 import { formatCost, formatTokens } from "@/lib/utils";
-import { Loader2, Copy, Check, ChevronRight, ChevronDown, Sparkles, Save, UserCircle, Brain, Square, RefreshCw, ArrowRight } from "lucide-react";
+import { Loader2, Copy, Check, ChevronRight, ChevronDown, Sparkles, Save, UserCircle, Brain, Square, RefreshCw, ArrowRight, Upload, X, Search, Globe, Plus, Trash2, BookOpen } from "lucide-react";
 import { buildBridgingContext, isCrossPlatform, getPlatformName } from "@/lib/prompts/crossPlatformAdapter";
 
 type Step = "analyze" | "generate" | "optimize" | "validate";
@@ -70,6 +70,13 @@ function GenerateContent() {
   const [step, setStep] = useState<Step>("analyze");
   const [provider, setProvider] = useState<"anthropic" | "openrouter">("anthropic");
   const [model, setModel] = useState("claude-sonnet-4-5-20250929");
+  const [showAdvancedModels, setShowAdvancedModels] = useState(false);
+  const [stepModels, setStepModels] = useState<Record<Step, string>>({
+    analyze: "",
+    generate: "",
+    optimize: "",
+    validate: "",
+  });
 
   // Profile selection
   const [useExistingProfile, setUseExistingProfile] = useState(!!initialProfileId);
@@ -78,12 +85,23 @@ function GenerateContent() {
   // P1
   const [creatorName, setCreatorName] = useState("");
   const [contentSamples, setContentSamples] = useState("");
+  const [uploadedFiles, setUploadedFiles] = useState<string[]>([]);
+  const [uploadingFiles, setUploadingFiles] = useState(false);
   const [voiceBible, setVoiceBible] = useState("");
 
   // P2
   const [topic, setTopic] = useState("");
   const [contentType, setContentType] = useState("");
   const [additionalNotes, setAdditionalNotes] = useState("");
+
+  // Research
+  const [researchContext, setResearchContext] = useState("");
+  const [researchLoading, setResearchLoading] = useState(false);
+  const [searchResults, setSearchResults] = useState<Array<{ title: string; snippet: string; url: string }>>([]);
+  const [fetchedUrls, setFetchedUrls] = useState<Array<{ title: string; url: string; text: string }>>([]);
+  const [urlInput, setUrlInput] = useState("");
+  const [urlFetching, setUrlFetching] = useState(false);
+  const [showSavedResearch, setShowSavedResearch] = useState(false);
 
   // Outputs
   const [expressionProfile, setExpressionProfile] = useState("");
@@ -138,6 +156,9 @@ function GenerateContent() {
     selectedProfileId ? { id: selectedProfileId as Id<"profiles"> } : "skip"
   );
   const createProfile = useMutation(api.profiles.create);
+  const savedResearch = useQuery(api.research.list, savedProfileId ? { profileId: savedProfileId } : {});
+  const createResearch = useMutation(api.research.create);
+  const removeResearch = useMutation(api.research.remove);
   const createContent = useMutation(api.content.create);
   const updateContent = useMutation(api.content.update);
   const logUsage = useMutation(api.analytics.logUsage);
@@ -221,6 +242,7 @@ function GenerateContent() {
         userPrompt += `Expression Profile:\n${expressionProfile}\n\nTopic: ${topic}\nContent Type: ${contentType}`;
         if (voiceBible) userPrompt += `\nVoice Bible:\n${voiceBible}`;
         if (additionalNotes) userPrompt += `\nAdditional Notes: ${additionalNotes}`;
+        if (researchContext) userPrompt += `\n\nResearch Context:\n${researchContext}`;
       } else if (currentStep === "optimize") {
         const contentToOptimize = refinementRoundRef.current > 0 ? optimizedContentRef.current : generatedContent;
         userPrompt = crossPlatformPrefix("optimize");
@@ -238,7 +260,7 @@ function GenerateContent() {
       const llmRes = await fetch("/api/llm", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ provider, model, systemPrompt, userPrompt, maxTokens: 8192, stream: true }),
+        body: JSON.stringify({ provider, model: stepModels[currentStep] || model, systemPrompt, userPrompt, maxTokens: 8192, stream: true }),
       });
 
       if (!llmRes.ok) {
@@ -619,7 +641,39 @@ function GenerateContent() {
             ))}
           </select>
         </div>
+        <div className="flex items-end">
+          <button
+            type="button"
+            onClick={() => setShowAdvancedModels(!showAdvancedModels)}
+            className="rounded-xl border px-4 py-2.5 text-[13px] font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+          >
+            {showAdvancedModels ? "Hide" : "Advanced"}
+          </button>
+        </div>
       </div>
+
+      {showAdvancedModels && (
+        <div className="rounded-2xl border bg-card px-6 py-4">
+          <p className="mb-3 text-[12px] font-semibold uppercase tracking-wider text-muted-foreground">Per-Step Model Overrides</p>
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+            {STEPS.map((s) => (
+              <div key={s.id}>
+                <label className="mb-1 block text-[11px] font-medium text-muted-foreground">{s.tag} {s.label}</label>
+                <select
+                  className="w-full rounded-lg border bg-background px-3 py-2 text-[13px] focus:outline-none focus:ring-2 focus:ring-primary/20"
+                  value={stepModels[s.id]}
+                  onChange={(e) => setStepModels((prev) => ({ ...prev, [s.id]: e.target.value }))}
+                >
+                  <option value="">Default ({models.find((m) => m.id === model)?.name || model})</option>
+                  {models.map((m) => (
+                    <option key={m.id} value={m.id}>{m.name} — ${m.inputCostPer1M}/{m.outputCostPer1M}</option>
+                  ))}
+                </select>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Error */}
       {error && (
@@ -743,10 +797,75 @@ function GenerateContent() {
               <div>
                 <div className="mb-2 flex items-center justify-between">
                   <label className="text-[14px] font-medium">Content Samples</label>
-                  <span className="text-[12px] text-muted-foreground">
-                    Paste 20-30 pieces, separated by --- or blank lines
-                  </span>
+                  <div className="flex items-center gap-3">
+                    <span className="text-[12px] text-muted-foreground">
+                      Paste 20-30 pieces, separated by --- or blank lines
+                    </span>
+                    <input
+                      type="file"
+                      id="content-file-upload"
+                      className="hidden"
+                      accept=".txt,.csv,.pdf,.docx,.md"
+                      multiple
+                      onChange={async (e) => {
+                        const fileList = e.target.files;
+                        if (!fileList || fileList.length === 0) return;
+                        const filesArray = Array.from(fileList);
+                        e.target.value = "";
+                        setUploadingFiles(true);
+                        try {
+                          const results = await Promise.all(
+                            filesArray.map(async (file) => {
+                              try {
+                                const form = new FormData();
+                                form.append("file", file);
+                                const res = await fetch("/api/parse-file", { method: "POST", body: form });
+                                const data = await res.json();
+                                if (data.text) return { name: file.name, text: data.text };
+                              } catch (err) {
+                                console.error(`Failed to parse ${file.name}:`, err);
+                              }
+                              return null;
+                            })
+                          );
+                          const successful = results.filter((r): r is { name: string; text: string } => r !== null);
+                          if (successful.length > 0) {
+                            const combined = successful.map((r) => r.text).join("\n\n---\n\n");
+                            setContentSamples((prev) => prev ? prev + "\n\n---\n\n" + combined : combined);
+                            setUploadedFiles((prev) => [...prev, ...successful.map((r) => r.name)]);
+                          }
+                        } finally {
+                          setUploadingFiles(false);
+                        }
+                      }}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => document.getElementById("content-file-upload")?.click()}
+                      disabled={uploadingFiles}
+                      className="inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-[12px] font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground disabled:opacity-50"
+                    >
+                      {uploadingFiles ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Upload className="h-3.5 w-3.5" />}
+                      Upload Files
+                    </button>
+                  </div>
                 </div>
+                {uploadedFiles.length > 0 && (
+                  <div className="mb-2 flex flex-wrap gap-1.5">
+                    {uploadedFiles.map((name, i) => (
+                      <span key={i} className="inline-flex items-center gap-1 rounded-md bg-muted px-2 py-1 text-[11px] text-muted-foreground">
+                        {name}
+                        <button
+                          type="button"
+                          onClick={() => setUploadedFiles((prev) => prev.filter((_, j) => j !== i))}
+                          className="ml-0.5 hover:text-foreground"
+                        >
+                          <X className="h-3 w-3" />
+                        </button>
+                      </span>
+                    ))}
+                  </div>
+                )}
                 <textarea
                   placeholder={"Paste your first content sample here...\n\n---\n\nPaste your second content sample here...\n\n---\n\nPaste your third content sample here..."}
                   value={contentSamples}
@@ -895,14 +1014,254 @@ function GenerateContent() {
 
           <div>
             <label className="mb-2 block text-[14px] font-medium">Topic</label>
-            <input
-              type="text"
-              placeholder="What should the content be about?"
-              value={topic}
-              onChange={(e) => setTopic(e.target.value)}
-              className="w-full rounded-xl border bg-background px-4 py-3 text-[15px] placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
-            />
+            <div className="flex gap-2">
+              <input
+                type="text"
+                placeholder="What should the content be about?"
+                value={topic}
+                onChange={(e) => setTopic(e.target.value)}
+                className="flex-1 rounded-xl border bg-background px-4 py-3 text-[15px] placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+              />
+              <button
+                onClick={async () => {
+                  if (!topic) return;
+                  setResearchLoading(true);
+                  setSearchResults([]);
+                  try {
+                    const res = await fetch("/api/web-search", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ query: topic }),
+                    });
+                    const data = await res.json();
+                    if (data.error) {
+                      setError(data.error);
+                    } else {
+                      setSearchResults(data.results || []);
+                    }
+                  } catch {
+                    setError("Web search failed");
+                  }
+                  setResearchLoading(false);
+                }}
+                disabled={researchLoading || !topic}
+                className="inline-flex items-center gap-2 rounded-xl border px-4 py-3 text-[14px] font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground disabled:opacity-40"
+              >
+                {researchLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Search className="h-4 w-4" />}
+                Research
+              </button>
+            </div>
           </div>
+
+          {/* Search Results */}
+          {searchResults.length > 0 && (
+            <div className="rounded-2xl border bg-card p-5 space-y-3">
+              <div className="flex items-center gap-2">
+                <Globe className="h-4 w-4 text-muted-foreground" />
+                <span className="text-[13px] font-semibold">Search Results</span>
+                <span className="text-[11px] text-muted-foreground">Click to fetch full content</span>
+              </div>
+              <div className="space-y-2">
+                {searchResults.map((result, i) => {
+                  const alreadyFetched = fetchedUrls.some((f) => f.url === result.url);
+                  return (
+                    <button
+                      key={i}
+                      onClick={async () => {
+                        if (alreadyFetched) return;
+                        setUrlFetching(true);
+                        try {
+                          const res = await fetch("/api/fetch-url", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ url: result.url }),
+                          });
+                          const data = await res.json();
+                          if (data.error) {
+                            setError(data.error);
+                          } else {
+                            const newEntry = { title: data.title, url: data.url, text: data.text };
+                            setFetchedUrls((prev) => [...prev, newEntry]);
+                            setResearchContext((prev) =>
+                              prev ? `${prev}\n\n---\nSource: ${data.title} (${data.url})\n${data.text}` : `Source: ${data.title} (${data.url})\n${data.text}`
+                            );
+                          }
+                        } catch {
+                          setError("Failed to fetch URL");
+                        }
+                        setUrlFetching(false);
+                      }}
+                      disabled={urlFetching || alreadyFetched}
+                      className={`w-full rounded-xl border px-4 py-3 text-left transition-all ${
+                        alreadyFetched
+                          ? "border-green-200 dark:border-green-900/50 bg-green-50/50 dark:bg-green-950/20"
+                          : "hover:border-primary/30 hover:bg-muted/50"
+                      } disabled:opacity-60`}
+                    >
+                      <p className="text-[13px] font-medium">{result.title}</p>
+                      <p className="text-[12px] text-muted-foreground mt-0.5">{result.snippet}</p>
+                      <p className="text-[11px] text-primary/60 mt-0.5 truncate">{result.url}</p>
+                      {alreadyFetched && (
+                        <span className="inline-flex items-center gap-1 mt-1 text-[11px] text-green-600 dark:text-green-400">
+                          <Check className="h-3 w-3" /> Fetched
+                        </span>
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {/* Add URL */}
+          <div>
+            <label className="mb-2 block text-[14px] font-medium">Add URL</label>
+            <div className="flex gap-2">
+              <input
+                type="url"
+                placeholder="https://example.com/article"
+                value={urlInput}
+                onChange={(e) => setUrlInput(e.target.value)}
+                className="flex-1 rounded-xl border bg-background px-4 py-3 text-[14px] placeholder:text-muted-foreground/40 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+              />
+              <button
+                onClick={async () => {
+                  if (!urlInput) return;
+                  setUrlFetching(true);
+                  try {
+                    const res = await fetch("/api/fetch-url", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ url: urlInput }),
+                    });
+                    const data = await res.json();
+                    if (data.error) {
+                      setError(data.error);
+                    } else {
+                      setFetchedUrls((prev) => [...prev, { title: data.title, url: data.url, text: data.text }]);
+                      setResearchContext((prev) =>
+                        prev ? `${prev}\n\n---\nSource: ${data.title} (${data.url})\n${data.text}` : `Source: ${data.title} (${data.url})\n${data.text}`
+                      );
+                      setUrlInput("");
+                    }
+                  } catch {
+                    setError("Failed to fetch URL");
+                  }
+                  setUrlFetching(false);
+                }}
+                disabled={urlFetching || !urlInput}
+                className="inline-flex items-center gap-2 rounded-xl border px-4 py-3 text-[14px] font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground disabled:opacity-40"
+              >
+                {urlFetching ? <Loader2 className="h-4 w-4 animate-spin" /> : <Plus className="h-4 w-4" />}
+                Fetch
+              </button>
+            </div>
+          </div>
+
+          {/* Fetched URLs list */}
+          {fetchedUrls.length > 0 && (
+            <div className="rounded-2xl border bg-card p-5 space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <BookOpen className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-[13px] font-semibold">Research Context ({fetchedUrls.length} sources)</span>
+                </div>
+                <button
+                  onClick={async () => {
+                    if (fetchedUrls.length === 0) return;
+                    try {
+                      await createResearch({
+                        profileId: savedProfileId ?? undefined,
+                        query: topic || undefined,
+                        sources: JSON.stringify(fetchedUrls),
+                      });
+                    } catch {
+                      setError("Failed to save research");
+                    }
+                  }}
+                  className="inline-flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-[12px] font-medium text-primary transition-colors hover:bg-primary/10"
+                >
+                  <Save className="h-3.5 w-3.5" />
+                  Save Research
+                </button>
+              </div>
+              <div className="space-y-1.5">
+                {fetchedUrls.map((item, i) => (
+                  <div key={i} className="flex items-center justify-between rounded-lg border px-3 py-2">
+                    <div className="flex-1 min-w-0">
+                      <p className="text-[13px] font-medium truncate">{item.title}</p>
+                      <p className="text-[11px] text-primary/60 truncate">{item.url}</p>
+                    </div>
+                    <button
+                      onClick={() => {
+                        setFetchedUrls((prev) => prev.filter((_, j) => j !== i));
+                        // Rebuild research context from remaining URLs
+                        const remaining = fetchedUrls.filter((_, j) => j !== i);
+                        setResearchContext(
+                          remaining.map((r) => `Source: ${r.title} (${r.url})\n${r.text}`).join("\n\n---\n")
+                        );
+                      }}
+                      className="ml-2 text-muted-foreground hover:text-red-500 transition-colors"
+                    >
+                      <Trash2 className="h-3.5 w-3.5" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Saved Research */}
+          {savedResearch && savedResearch.length > 0 && (
+            <div className="rounded-2xl border bg-card p-5 space-y-3">
+              <button
+                onClick={() => setShowSavedResearch(!showSavedResearch)}
+                className="flex w-full items-center justify-between"
+              >
+                <div className="flex items-center gap-2">
+                  <BookOpen className="h-4 w-4 text-muted-foreground" />
+                  <span className="text-[13px] font-semibold">Saved Research ({savedResearch.length})</span>
+                </div>
+                <ChevronDown className={`h-4 w-4 text-muted-foreground transition-transform ${showSavedResearch ? "rotate-180" : ""}`} />
+              </button>
+              {showSavedResearch && (
+                <div className="space-y-2 pt-2">
+                  {savedResearch.map((r) => {
+                    const sources = JSON.parse(r.sources) as Array<{ title: string; url: string; text: string }>;
+                    return (
+                      <div key={r._id} className="rounded-xl border px-4 py-3">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <p className="text-[13px] font-medium">{r.query || "Research"}</p>
+                            <p className="text-[11px] text-muted-foreground">{sources.length} sources &middot; {new Date(r.createdAt).toLocaleDateString()}</p>
+                          </div>
+                          <div className="flex gap-2">
+                            <button
+                              onClick={() => {
+                                setFetchedUrls(sources);
+                                setResearchContext(
+                                  sources.map((s) => `Source: ${s.title} (${s.url})\n${s.text}`).join("\n\n---\n")
+                                );
+                              }}
+                              className="text-[11px] text-primary hover:underline"
+                            >
+                              Load
+                            </button>
+                            <button
+                              onClick={() => removeResearch({ id: r._id })}
+                              className="text-muted-foreground hover:text-red-500"
+                            >
+                              <Trash2 className="h-3 w-3" />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          )}
 
           <div>
             <label className="mb-2 block text-[14px] font-medium">Content Type</label>

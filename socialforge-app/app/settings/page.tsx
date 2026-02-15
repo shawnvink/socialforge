@@ -8,14 +8,19 @@ export default function SettingsPage() {
   const [activeProvider, setActiveProvider] = useState<"anthropic" | "openrouter">("anthropic");
   const [anthropicKey, setAnthropicKey] = useState("");
   const [openrouterKey, setOpenrouterKey] = useState("");
+  const [googleSearchKey, setGoogleSearchKey] = useState("");
+  const [googleSearchCx, setGoogleSearchCx] = useState("");
   const [defaultModel, setDefaultModel] = useState("claude-sonnet-4-5-20250929");
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState("");
   const [apiStatus, setApiStatus] = useState<{
     hasAnthropic: boolean;
     hasOpenRouter: boolean;
+    hasGoogleSearch: boolean;
     anthropicKeyPreview: string | null;
     openrouterKeyPreview: string | null;
+    googleSearchKeyPreview: string | null;
+    googleSearchCxPreview: string | null;
   } | null>(null);
   const [testing, setTesting] = useState(false);
   const [testResult, setTestResult] = useState<{ success: boolean; message: string } | null>(null);
@@ -37,6 +42,8 @@ export default function SettingsPage() {
         body: JSON.stringify({
           anthropicApiKey: anthropicKey || undefined,
           openrouterApiKey: openrouterKey || undefined,
+          googleSearchApiKey: googleSearchKey || undefined,
+          googleSearchCx: googleSearchCx || undefined,
         }),
       });
       const data = await res.json();
@@ -44,6 +51,8 @@ export default function SettingsPage() {
         setMessage(data.message);
         setAnthropicKey("");
         setOpenrouterKey("");
+        setGoogleSearchKey("");
+        setGoogleSearchCx("");
         const status = await fetch("/api/settings").then((r) => r.json());
         setApiStatus(status);
       } else {
@@ -217,6 +226,73 @@ export default function SettingsPage() {
               {message}
             </p>
           )}
+        </div>
+      </section>
+
+      {/* Google Search API */}
+      <section>
+        <h2 className="text-[13px] font-semibold uppercase tracking-wider text-muted-foreground">
+          Web Research (Google Search)
+        </h2>
+        <p className="mt-1 text-[14px] text-muted-foreground">
+          Enable web research in the Generate workflow. Free tier: 100 queries/day.
+        </p>
+        <div className="mt-4 rounded-2xl border bg-card p-6 space-y-4">
+          <div className="flex items-start justify-between">
+            <div>
+              <label className="text-[14px] font-medium">Google Custom Search API</label>
+              <p className="mt-0.5 text-[13px] text-muted-foreground">
+                Get credentials at{" "}
+                <a href="https://programmablesearchengine.google.com/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                  Programmable Search Engine
+                </a>
+                {" "}and{" "}
+                <a href="https://console.cloud.google.com/apis/credentials" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                  Google Cloud Console
+                </a>
+              </p>
+            </div>
+            {apiStatus?.hasGoogleSearch ? (
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-green-50 dark:bg-green-950/30 px-3 py-1 text-[12px] font-medium text-green-700 dark:text-green-400">
+                <CheckCircle2 className="h-3.5 w-3.5" /> Connected
+              </span>
+            ) : (
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-red-50 dark:bg-red-950/30 px-3 py-1 text-[12px] font-medium text-red-600 dark:text-red-400">
+                <XCircle className="h-3.5 w-3.5" /> Not configured
+              </span>
+            )}
+          </div>
+
+          {apiStatus?.googleSearchKeyPreview && (
+            <p className="font-mono text-[12px] text-muted-foreground">
+              API Key: {apiStatus.googleSearchKeyPreview} | CX: {apiStatus.googleSearchCxPreview}
+            </p>
+          )}
+
+          <div className="flex gap-3">
+            <input
+              type="password"
+              placeholder="Google API Key"
+              value={googleSearchKey}
+              onChange={(e) => setGoogleSearchKey(e.target.value)}
+              className="flex-1 rounded-xl border bg-background px-4 py-3 text-[14px] font-mono placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+            />
+            <input
+              type="text"
+              placeholder="Search Engine ID (cx)"
+              value={googleSearchCx}
+              onChange={(e) => setGoogleSearchCx(e.target.value)}
+              className="flex-1 rounded-xl border bg-background px-4 py-3 text-[14px] font-mono placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary"
+            />
+            <button
+              onClick={saveKeys}
+              disabled={saving || (!googleSearchKey && !googleSearchCx)}
+              className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-[14px] font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-40"
+            >
+              {saving && <Loader2 className="h-4 w-4 animate-spin" />}
+              Save
+            </button>
+          </div>
         </div>
       </section>
 

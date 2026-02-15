@@ -12,6 +12,7 @@ import type * as analytics from "../analytics.js";
 import type * as content from "../content.js";
 import type * as migrations from "../migrations.js";
 import type * as profiles from "../profiles.js";
+import type * as research from "../research.js";
 import type * as settings from "../settings.js";
 
 import type {
@@ -25,6 +26,7 @@ declare const fullApi: ApiFromModules<{
   content: typeof content;
   migrations: typeof migrations;
   profiles: typeof profiles;
+  research: typeof research;
   settings: typeof settings;
 }>;
 
